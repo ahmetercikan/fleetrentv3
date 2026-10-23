@@ -6,8 +6,21 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiBadge from '@/components/ui/UiBadge.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
+import CarTopView from '@/components/ui/CarTopView.vue'
 import Icon from '@/components/ui/Icon.vue'
 import { tires, tireStatusLabels, tireSummary, tireSeasons, NUM } from '@/data/mock'
+
+// Örnek araç için lastik pozisyon durumları (üstten görünüm)
+const wheelTones = {
+  FL: 'var(--color-success)', FR: 'var(--color-success)',
+  RL: 'var(--color-warning)', RR: 'var(--color-danger)',
+}
+const wheelLegend = [
+  { pos: 'Sol Ön', label: 'İyi', tone: 'success' },
+  { pos: 'Sağ Ön', label: 'İyi', tone: 'success' },
+  { pos: 'Sol Arka', label: 'Yaklaşan', tone: 'warning' },
+  { pos: 'Sağ Arka', label: 'Değişim', tone: 'danger' },
+]
 
 const columns = [
   { key: 'plate', label: 'Plaka', mono: true },
@@ -47,6 +60,17 @@ const donut = [
         </DataTable>
       </div>
       <div class="space-y-5">
+        <UiCard title="Lastik Pozisyonları" subtitle="34 FLT 556 · güncel durum">
+          <CarTopView :wheel-tones="wheelTones" :width="150" />
+          <ul class="mt-4 grid grid-cols-2 gap-2">
+            <li v-for="w in wheelLegend" :key="w.pos" class="flex items-center gap-2 text-xs">
+              <span class="h-2.5 w-2.5 rounded-full" :class="{
+                'bg-success': w.tone === 'success', 'bg-warning': w.tone === 'warning', 'bg-danger': w.tone === 'danger',
+              }" />
+              <span class="text-ink-soft">{{ w.pos }}</span>
+            </li>
+          </ul>
+        </UiCard>
         <UiCard title="Lastik Durum Özeti">
           <DonutChart :data="donut" :center-value="tires.length" center-label="Toplam" :size="150" />
         </UiCard>

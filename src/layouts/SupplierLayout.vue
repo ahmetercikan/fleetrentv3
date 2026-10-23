@@ -9,7 +9,7 @@ import SupplierTopbar from '@/components/layout/SupplierTopbar.vue'
     <SupplierSidebar />
     <div class="lg:pl-64">
       <SupplierTopbar />
-      <main class="mx-auto max-w-[1400px] px-4 py-6 lg:px-8 lg:py-8">
+      <main class="mx-auto max-w-[1760px] px-4 py-6 lg:px-10 lg:py-8">
         <RouterView v-slot="{ Component }">
           <transition name="fade" mode="out-in"><component :is="Component" /></transition>
         </RouterView>
