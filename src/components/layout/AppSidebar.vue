@@ -51,23 +51,23 @@ const soon = ['Şoförlü Araçlar', 'Mobil Uygulama', 'Yapay Zeka Asistan']
 
 <template>
   <aside
-    class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[color:var(--color-border)] bg-surface transition-transform lg:translate-x-0"
+    class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[color:var(--color-sidebar-line)] bg-[color:var(--color-sidebar)] text-[color:var(--color-sidebar-ink)] transition-transform lg:translate-x-0"
     :class="ui.mobileNavOpen ? 'translate-x-0' : '-translate-x-full'"
   >
     <!-- Logo -->
     <div class="flex h-16 items-center px-5">
-      <RouterLink to="/dashboard"><BrandLogo :size="32" /></RouterLink>
+      <RouterLink to="/dashboard"><BrandLogo :size="32" dark /></RouterLink>
     </div>
 
     <!-- Nav -->
     <nav class="flex-1 space-y-6 overflow-y-auto px-3 py-4">
       <div v-for="g in groups" :key="g.title">
-        <p class="px-3 pb-2 text-[0.65rem] font-bold uppercase tracking-wider text-ink-faint">{{ g.title }}</p>
+        <p class="px-3 pb-2 text-[0.65rem] font-bold uppercase tracking-wider text-[color:var(--color-sidebar-faint)]">{{ g.title }}</p>
         <ul class="space-y-0.5">
           <li v-for="item in g.items" :key="item.to">
             <RouterLink
               :to="item.to"
-              class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted"
+              class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition hover:bg-[color:var(--color-sidebar-soft)] hover:text-white"
               active-class="!bg-brand-600 !text-white shadow-sm"
               :exact-active-class="item.to === '/dashboard' ? '!bg-brand-600 !text-white shadow-sm' : ''"
             >
@@ -79,12 +79,12 @@ const soon = ['Şoförlü Araçlar', 'Mobil Uygulama', 'Yapay Zeka Asistan']
       </div>
 
       <div>
-        <p class="px-3 pb-2 text-[0.65rem] font-bold uppercase tracking-wider text-ink-faint">Yakında</p>
+        <p class="px-3 pb-2 text-[0.65rem] font-bold uppercase tracking-wider text-[color:var(--color-sidebar-faint)]">Yakında</p>
         <ul class="space-y-0.5">
           <li v-for="s in soon" :key="s">
-            <span class="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-ink-faint">
+            <span class="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-[color:var(--color-sidebar-faint)]">
               {{ s }}
-              <span class="rounded-full bg-surface-muted px-2 py-0.5 text-[0.6rem] font-semibold">yakında</span>
+              <span class="rounded-full bg-[color:var(--color-sidebar-soft)] px-2 py-0.5 text-[0.6rem] font-semibold">yakında</span>
             </span>
           </li>
         </ul>
@@ -92,8 +92,8 @@ const soon = ['Şoförlü Araçlar', 'Mobil Uygulama', 'Yapay Zeka Asistan']
     </nav>
 
     <!-- Alt -->
-    <div class="border-t border-[color:var(--color-border)] p-3">
-      <button @click="logout" class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted">
+    <div class="border-t border-[color:var(--color-sidebar-line)] p-3">
+      <button @click="logout" class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition hover:bg-[color:var(--color-sidebar-soft)] hover:text-white">
         <Icon name="logout" :size="19" /> Çıkış Yap
       </button>
     </div>

@@ -7,8 +7,18 @@ const props = defineProps({
   wheelTones: { type: Object, default: () => ({}) },
   points: { type: Array, default: () => [] },
   width: { type: Number, default: 180 },
+  interactive: { type: Boolean, default: false },
+  activePart: { type: String, default: '' },
 })
+const emit = defineEmits(['part-click'])
 const uid = useId()
+const hotspots = [
+  { id: 'FL', x: 22, y: 90, w: 40, h: 62 }, { id: 'FR', x: 178, y: 90, w: 40, h: 62 },
+  { id: 'RL', x: 22, y: 294, w: 40, h: 62 }, { id: 'RR', x: 178, y: 294, w: 40, h: 62 },
+  { id: 'engine', x: 52, y: 30, w: 136, h: 74 },
+  { id: 'body', x: 52, y: 150, w: 136, h: 148 },
+  { id: 'rear', x: 52, y: 330, w: 136, h: 78 },
+]
 const colorMap = {
   beyaz: '#eef1f5', siyah: '#262b33', gümüş: '#c3c8d1', gumus: '#c3c8d1', gri: '#848b97',
   antrasit: '#394049', lacivert: '#213257', 'koyu gri': '#51575f', kırmızı: '#c23a31', kirmizi: '#c23a31',
@@ -107,5 +117,18 @@ const wheelColor = (t) => t || null
       <circle :cx="p.x" :cy="p.y" r="13" :fill="p.tone || 'var(--color-danger)'" opacity="0.22" />
       <circle :cx="p.x" :cy="p.y" r="6" :fill="p.tone || 'var(--color-danger)'" stroke="#fff" stroke-width="1.5" />
     </g>
+
+    <!-- tıklanabilir parçalar -->
+    <g v-if="interactive">
+      <rect v-for="h in hotspots" :key="h.id" :x="h.x" :y="h.y" :width="h.w" :height="h.h" rx="10"
+        class="hotspot" :class="{ 'hotspot--active': activePart === h.id }"
+        @click="emit('part-click', h.id)" />
+    </g>
   </svg>
 </template>
+
+<style scoped>
+.hotspot { fill: transparent; cursor: pointer; transition: fill 0.15s; }
+.hotspot:hover { fill: var(--color-brand-500); fill-opacity: 0.14; }
+.hotspot--active { fill: var(--color-brand-500); fill-opacity: 0.2; stroke: var(--color-brand-500); stroke-width: 2.5; }
+</style>

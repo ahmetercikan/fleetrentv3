@@ -48,7 +48,47 @@ const columns = [
 // --- Detay çekmecesi ---
 const selected = ref(null)
 const drawerOpen = ref(false)
-function openDetail(v) { selected.value = v; drawerOpen.value = true }
+const activePart = ref('FL')
+function openDetail(v) { selected.value = v; activePart.value = 'FL'; drawerOpen.value = true }
+
+// Tıklanan araç parçasının verileri
+const partData = computed(() => {
+  const v = selected.value
+  if (!v) return null
+  const km = v.km
+  const wheel = (label, drop = 0) => ({
+    title: `${label} Lastik`, icon: 'tire',
+    rows: [
+      { l: 'Marka', v: 'Michelin Primacy 4' },
+      { l: 'Ebat', v: '205/55 R16' },
+      { l: 'Diş Derinliği', v: Math.max(1.6, (8 - km / 16000 - drop)).toFixed(1) + ' mm' },
+      { l: 'Basınç', v: (2.2 + drop * 0.1).toFixed(1) + ' bar' },
+      { l: 'Mevsim', v: 'Dört Mevsim' },
+      { l: 'Tahmini Kalan', v: NUM(Math.max(0, 55000 - (km % 55000))) + ' km' },
+    ],
+  })
+  switch (activePart.value) {
+    case 'FL': return wheel('Sol Ön')
+    case 'FR': return wheel('Sağ Ön')
+    case 'RL': return wheel('Sol Arka', v.status === 'service' ? 2 : 0.3)
+    case 'RR': return wheel('Sağ Arka', 0.4)
+    case 'engine': return { title: 'Motor & Mekanik', icon: 'wrench', rows: [
+      { l: 'Motor No', v: v.engineNo }, { l: 'Yakıt', v: 'Dizel' }, { l: 'Güç', v: '150 HP' },
+      { l: 'Son Bakım', v: NUM(Math.max(0, km - 8000)) + ' km' },
+      { l: 'Sonraki Bakım', v: NUM(km + (10000 - (km % 10000))) + ' km' },
+    ] }
+    case 'body': return { title: 'Kaporta & Boya', icon: 'car', rows: [
+      { l: 'Renk', v: v.color },
+      { l: 'Boya Durumu', v: v.status === 'damage' ? 'Onarım bekliyor' : 'Orijinal' },
+      { l: 'Hasar Kaydı', v: v.status === 'damage' ? '1 açık dosya' : 'Yok' },
+      { l: 'Değişen Parça', v: v.status === 'damage' ? 'Ön tampon' : '—' },
+    ] }
+    case 'rear': return { title: 'Arka & Bagaj', icon: 'box', rows: [
+      { l: 'Bagaj Hacmi', v: '586 L' }, { l: 'Stop Lambaları', v: 'Sağlam' }, { l: 'Çeki Demiri', v: 'Yok' },
+    ] }
+    default: return null
+  }
+})
 const wheelTones = computed(() => {
   const b = { FL: 'var(--color-success)', FR: 'var(--color-success)', RL: 'var(--color-success)', RR: 'var(--color-success)' }
   if (selected.value?.status === 'service') b.RL = 'var(--color-warning)'
@@ -146,10 +186,23 @@ const colorOptions = ['Beyaz', 'Siyah', 'Gümüş', 'Gri', 'Antrasit', 'Lacivert
           <span class="text-sm text-ink-soft">{{ selected.year }} · {{ selected.color }}</span>
         </div>
         <div class="mt-4 rounded-xl border border-[color:var(--color-border)] bg-surface p-4">
-          <CarTopView :color="selected.color" :wheel-tones="wheelTones" :points="damagePoints" :width="150" />
-          <p class="mt-2 text-center text-xs text-ink-faint">
-            {{ selected.status === 'damage' ? 'Hasar noktaları işaretli' : selected.status === 'service' ? 'Sol arka lastik: değişim yaklaşıyor' : 'Araç durumu iyi' }}
-          </p>
+          <CarTopView :color="selected.color" :wheel-tones="wheelTones" :points="damagePoints" :width="160"
+            interactive :active-part="activePart" @part-click="activePart = $event" />
+          <p class="mt-2 text-center text-xs text-ink-faint">Lastik, motor, kaporta veya arka bölüme tıklayın.</p>
+        </div>
+
+        <!-- Tıklanan parça verileri -->
+        <div v-if="partData" class="mt-3 rounded-xl border border-[color:var(--color-border)] bg-surface-muted/60 p-4">
+          <div class="mb-2 flex items-center gap-2">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-100 text-brand-700"><Icon :name="partData.icon" :size="16" /></span>
+            <h4 class="text-sm font-bold">{{ partData.title }}</h4>
+          </div>
+          <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+            <div v-for="r in partData.rows" :key="r.l" class="flex items-center justify-between gap-2 border-b border-[color:var(--color-border)]/60 pb-1.5 last:border-0">
+              <dt class="text-ink-faint">{{ r.l }}</dt>
+              <dd class="font-semibold text-ink">{{ r.v }}</dd>
+            </div>
+          </dl>
         </div>
         <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
           <div v-for="f in [

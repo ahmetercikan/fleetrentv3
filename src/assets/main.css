@@ -39,6 +39,13 @@
   --color-ink-soft: #454e63;
   --color-ink-faint: #828ba0;
 
+  /* Sol menü — füme/antrasit (her iki temada koyu kalır) */
+  --color-sidebar: #1b2130;
+  --color-sidebar-soft: #262f43;
+  --color-sidebar-line: #2d3850;
+  --color-sidebar-ink: #c7cfde;
+  --color-sidebar-faint: #79859c;
+
   --radius-card: 1rem;
   --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05), 0 6px 20px -14px rgba(16, 24, 40, 0.18);
   --shadow-pop: 0 12px 40px -14px rgba(16, 24, 40, 0.24);

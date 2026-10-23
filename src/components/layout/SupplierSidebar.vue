@@ -27,12 +27,12 @@ const toggle = (label) => (open.value[label] = !open.value[label])
 
 <template>
   <aside
-    class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[color:var(--color-border)] bg-surface transition-transform lg:translate-x-0"
+    class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[color:var(--color-sidebar-line)] bg-[color:var(--color-sidebar)] text-[color:var(--color-sidebar-ink)] transition-transform lg:translate-x-0"
     :class="ui.mobileNavOpen ? 'translate-x-0' : '-translate-x-full'"
   >
     <div class="flex h-16 items-center gap-2.5 px-5">
-      <RouterLink to="/supplier" class="flex items-center gap-2"><BrandLogo :size="32" /></RouterLink>
-      <span class="rounded-md bg-brand-50 px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wider text-brand-600">Tedarikçi</span>
+      <RouterLink to="/supplier" class="flex items-center gap-2"><BrandLogo :size="32" dark /></RouterLink>
+      <span class="rounded-md bg-[color:var(--color-sidebar-soft)] px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wider text-brand-300">Tedarikçi</span>
     </div>
 
     <nav class="flex-1 space-y-0.5 overflow-y-auto px-3 py-4">
@@ -41,7 +41,7 @@ const toggle = (label) => (open.value[label] = !open.value[label])
         <RouterLink
           v-if="!g.children"
           :to="g.to"
-          class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted"
+          class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition hover:bg-[color:var(--color-sidebar-soft)] hover:text-white"
           active-class="!bg-brand-600 !text-white shadow-sm"
           :exact-active-class="g.to === '/supplier' ? '!bg-brand-600 !text-white shadow-sm' : ''"
         >
@@ -52,17 +52,17 @@ const toggle = (label) => (open.value[label] = !open.value[label])
         <div v-else>
           <button
             @click="toggle(g.label)"
-            class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted"
+            class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition hover:bg-[color:var(--color-sidebar-soft)] hover:text-white"
           >
             <Icon :name="g.icon" :size="19" /> {{ g.label }}
             <Icon name="chevron" :size="16" class="ml-auto transition-transform" :class="open[g.label] ? 'rotate-90' : ''" />
           </button>
-          <ul v-show="open[g.label]" class="mb-1 ml-4 space-y-0.5 border-l border-[color:var(--color-border)] pl-3">
+          <ul v-show="open[g.label]" class="mb-1 ml-4 space-y-0.5 border-l border-[color:var(--color-sidebar-line)] pl-3">
             <li v-for="c in g.children" :key="c.to">
               <RouterLink
                 :to="c.to"
-                class="block rounded-lg px-3 py-2 text-[0.82rem] font-medium text-ink-soft transition hover:bg-surface-muted"
-                active-class="!text-brand-600 !bg-brand-50 font-semibold"
+                class="block rounded-lg px-3 py-2 text-[0.82rem] font-medium text-[color:var(--color-sidebar-faint)] transition hover:bg-[color:var(--color-sidebar-soft)] hover:text-white"
+                active-class="!text-white !bg-[color:var(--color-sidebar-soft)] font-semibold"
               >{{ c.label }}</RouterLink>
             </li>
           </ul>
@@ -70,8 +70,8 @@ const toggle = (label) => (open.value[label] = !open.value[label])
       </template>
     </nav>
 
-    <div class="border-t border-[color:var(--color-border)] p-3">
-      <button @click="logout" class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted">
+    <div class="border-t border-[color:var(--color-sidebar-line)] p-3">
+      <button @click="logout" class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition hover:bg-[color:var(--color-sidebar-soft)] hover:text-white">
         <Icon name="logout" :size="19" /> Çıkış Yap
       </button>
     </div>

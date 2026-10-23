@@ -4,6 +4,7 @@
 defineProps({
   variant: { type: String, default: 'full' },
   size: { type: Number, default: 34 }, // ikon kenar uzunluğu (px)
+  dark: { type: Boolean, default: false }, // koyu zemin (füme sidebar) için açık wordmark
 })
 </script>
 
@@ -24,7 +25,7 @@ defineProps({
         <path d="M22 25 L17 29 L22 33" />
       </g>
     </svg>
-    <span v-if="variant === 'full'" class="brand-wordmark">fleetrent</span>
+    <span v-if="variant === 'full'" class="brand-wordmark" :class="{ 'brand-wordmark--dark': dark }">fleetrent</span>
   </span>
 </template>
 
@@ -39,5 +40,8 @@ defineProps({
 }
 :root[data-theme='dark'] .brand-wordmark {
   color: #5a9bff;
+}
+.brand-wordmark--dark {
+  color: #f1f5fc;
 }
 </style>
