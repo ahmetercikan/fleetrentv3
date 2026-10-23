@@ -181,5 +181,46 @@ export const integrations = {
 
 export const partners = ['Toyota', 'Volkswagen', 'Mercedes-Benz', 'Ford', 'Hyundai', 'BMW', 'Renault', 'Avis Budget', 'Hertz', 'Garenta', 'Otokoç', 'Vdf Filo']
 
+// --- "Yakında" iken tamamlanan modüller ---
+
+export const contracts = [
+  { id: 'SZL-3012', plate: '34 FLT 108', supplier: 'Otokoç Filo', start: '2023-03-01', end: '2026-03-01', monthly: 28500, km: 45000, status: 'active', signed: true },
+  { id: 'SZL-3008', plate: '34 FLT 556', supplier: 'Vdf Filo', start: '2022-02-20', end: '2025-02-20', monthly: 42500, km: 30000, status: 'ending', signed: true },
+  { id: 'SZL-3001', plate: '34 FLT 781', supplier: 'Garenta', start: '2021-11-11', end: '2024-11-11', monthly: 38700, km: 60000, status: 'expired', signed: true },
+  { id: 'SZL-3020', plate: '34 FLT 677', supplier: 'Avis Filo', start: '2024-04-05', end: '2027-04-05', monthly: 19900, km: 30000, status: 'draft', signed: false },
+]
+export const contractStatusLabels = {
+  active: { label: 'Aktif', tone: 'success' }, ending: { label: 'Bitişe Yakın', tone: 'warning' },
+  expired: { label: 'Süresi Doldu', tone: 'danger' }, draft: { label: 'İmza Bekliyor', tone: 'info' },
+}
+
+export const hgsRecords = [
+  { id: 1, plate: '34 FLT 108', date: '2026-10-21', location: '15 Temmuz Şehitler Köprüsü', amount: 61, balance: 420 },
+  { id: 2, plate: '34 FLT 556', date: '2026-10-20', location: 'FSM Köprüsü', amount: 61, balance: 120 },
+  { id: 3, plate: '34 FLT 330', date: '2026-10-19', location: 'Avrasya Tüneli', amount: 155, balance: 890 },
+]
+export const fines = [
+  { id: 'TPC-9921', plate: '34 FLT 441', date: '2026-10-12', type: 'Hız limiti', amount: 1282, status: 'unpaid', driver: 'Zeynep Arslan' },
+  { id: 'TPC-9910', plate: '34 FLT 108', date: '2026-10-03', type: 'Hatalı park', amount: 993, status: 'paid', driver: 'Mehmet Yılmaz' },
+  { id: 'TPC-9899', plate: '34 FLT 556', date: '2026-09-25', type: 'Emniyet şeridi', amount: 2167, status: 'objection', driver: 'Okan Çelik' },
+]
+export const fineStatusLabels = {
+  unpaid: { label: 'Ödenmedi', tone: 'danger' }, paid: { label: 'Ödendi', tone: 'success' }, objection: { label: 'İtirazda', tone: 'info' },
+}
+export const invoices = [
+  { id: 'FT-2026-1042', supplier: 'Otokoç Filo', date: '2026-10-01', due: '2026-10-15', amount: 28500, status: 'paid' },
+  { id: 'FT-2026-1039', supplier: 'Vdf Filo', date: '2026-10-01', due: '2026-10-15', amount: 42500, status: 'open' },
+  { id: 'FT-2026-1030', supplier: 'Garenta', date: '2026-09-28', due: '2026-10-12', amount: 38700, status: 'overdue' },
+]
+export const invoiceStatusLabels = {
+  paid: { label: 'Ödendi', tone: 'success' }, open: { label: 'Açık', tone: 'warning' }, overdue: { label: 'Gecikmiş', tone: 'danger' },
+}
+export const notifications = [
+  { id: 1, icon: '📄', title: 'Sözleşme bitişi yaklaşıyor', body: '34 FLT 781 sözleşmesi 11.11.2026 tarihinde sona eriyor.', time: '2 saat önce', tone: 'danger', unread: true },
+  { id: 2, icon: '🔧', title: 'Periyodik bakım hatırlatması', body: '34 FLT 212 — 40.000 km bakımı planlanmalı.', time: '5 saat önce', tone: 'warning', unread: true },
+  { id: 3, icon: '⛽', title: 'UTTS harcama senkronu', body: 'Dün 3 araç için 7 yakıt fişi otomatik içe aktarıldı.', time: 'Dün', tone: 'info', unread: false },
+  { id: 4, icon: '✅', title: 'Teklif kabul edildi', body: 'TKF-2035 teklifi onaylandı, sözleşme imzaya hazır.', time: '2 gün önce', tone: 'success', unread: false },
+]
+
 export const TL = (n) => '₺' + Number(n || 0).toLocaleString('tr-TR')
 export const NUM = (n) => Number(n || 0).toLocaleString('tr-TR')

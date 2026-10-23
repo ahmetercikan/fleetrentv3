@@ -15,21 +15,30 @@ const groups = [
       { to: '/dashboard/service', label: 'Servis / Bakım', icon: 'wrench' },
       { to: '/dashboard/tires', label: 'Lastik Yönetimi', icon: 'tire' },
       { to: '/dashboard/fuel', label: 'Yakıt ve Giderler', icon: 'fuel' },
+      { to: '/dashboard/hgs-fines', label: 'HGS & Cezalar', icon: 'shield' },
     ],
   },
   {
-    title: 'Analiz & Yönetim',
+    title: 'Sözleşme & Finans',
     items: [
+      { to: '/dashboard/contracts', label: 'Sözleşmeler', icon: 'doc' },
+      { to: '/dashboard/invoices', label: 'Faturalar', icon: 'report' },
       { to: '/dashboard/reports', label: 'Raporlar', icon: 'report' },
       { to: '/dashboard/savings', label: 'Filo Kontrol & Tasarruf', icon: 'savings' },
+    ],
+  },
+  {
+    title: 'Yönetim',
+    items: [
       { to: '/dashboard/requests', label: 'Tedarikçi İşlemleri', icon: 'truck' },
+      { to: '/dashboard/notifications', label: 'Bildirimler', icon: 'bell' },
       { to: '/dashboard/users', label: 'Kullanıcılar ve Yetkiler', icon: 'users' },
       { to: '/dashboard/settings', label: 'Ayarlar', icon: 'settings' },
     ],
   },
 ]
 
-const soon = ['Sözleşmeler', 'Şoförlü Araçlar', 'HGS & Cezalar', 'Faturalar', 'Bildirimler']
+const soon = ['Şoförlü Araçlar', 'Mobil Uygulama', 'Yapay Zeka Asistan']
 </script>
 
 <template>
