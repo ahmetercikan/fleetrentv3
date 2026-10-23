@@ -5,6 +5,8 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiBadge from '@/components/ui/UiBadge.vue'
 import Icon from '@/components/ui/Icon.vue'
 import { notifications } from '@/data/mock'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 
 const toneBg = {
   danger: 'bg-danger-soft text-danger', warning: 'bg-warning-soft text-warning',
@@ -15,7 +17,7 @@ const toneBg = {
 <template>
   <div>
     <PageHeader eyebrow="Sistem" title="Bildirimler" subtitle="Sözleşme, bakım, harcama ve teklif olaylarından güncel bildirimler.">
-      <template #actions><UiButton variant="secondary">Tümünü Okundu İşaretle</UiButton></template>
+      <template #actions><UiButton variant="secondary" @click="toast.success('Tüm bildirimler okundu işaretlendi.')">Tümünü Okundu İşaretle</UiButton></template>
     </PageHeader>
 
     <UiCard pad="false">

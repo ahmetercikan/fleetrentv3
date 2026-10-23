@@ -5,6 +5,8 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiBadge from '@/components/ui/UiBadge.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 import { invoices, invoiceStatusLabels, TL } from '@/data/mock'
 
 const columns = [
@@ -19,7 +21,7 @@ const open = invoices.filter((i) => i.status !== 'paid').reduce((s, i) => s + i.
 <template>
   <div>
     <PageHeader eyebrow="Muhasebe" title="Faturalar" subtitle="Tedarikçi faturalarınızı, vade ve ödeme durumlarını takip edin.">
-      <template #actions><UiButton variant="secondary"><Icon name="download" :size="16" /> Dışa Aktar</UiButton></template>
+      <template #actions><UiButton variant="secondary" @click="toast.info('Faturalar dışa aktarılıyor…')"><Icon name="download" :size="16" /> Dışa Aktar</UiButton></template>
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -36,8 +38,8 @@ const open = invoices.filter((i) => i.status !== 'paid').reduce((s, i) => s + i.
       <template #cell-status="{ row }"><UiBadge :tone="invoiceStatusLabels[row.status].tone" dot>{{ invoiceStatusLabels[row.status].label }}</UiBadge></template>
       <template #cell-actions="{ row }">
         <div class="flex justify-end gap-1.5">
-          <UiButton v-if="row.status !== 'paid'" variant="primary" size="sm">Öde</UiButton>
-          <UiButton variant="ghost" size="sm">PDF</UiButton>
+          <UiButton v-if="row.status !== 'paid'" variant="primary" size="sm" @click="toast.success(row.id + ' ödemesi başlatıldı.')">Öde</UiButton>
+          <UiButton variant="ghost" size="sm" @click="toast.info(row.id + ' PDF indiriliyor…')">PDF</UiButton>
         </div>
       </template>
     </DataTable>

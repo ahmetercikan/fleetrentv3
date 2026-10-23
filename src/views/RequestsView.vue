@@ -6,6 +6,8 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiTabs from '@/components/ui/UiTabs.vue'
 import Icon from '@/components/ui/Icon.vue'
 import { vehicles } from '@/data/mock'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 
 const tab = ref('maintenance')
 const tabs = [
@@ -19,7 +21,7 @@ const tabs = [
 <template>
   <div>
     <PageHeader eyebrow="Servis Paneli" title="Tedarikçi İşlemleri & Hizmet Talepleri" subtitle="Servis, lastik, ikame araç ve acil yol yardım taleplerinizi oluşturun ve takip edin.">
-      <template #actions><UiButton variant="secondary"><Icon name="doc" :size="16" /> Taleplerim</UiButton></template>
+      <template #actions><UiButton variant="secondary" @click="toast.info('Taleplerim listesi açılıyor…')"><Icon name="doc" :size="16" /> Taleplerim</UiButton></template>
     </PageHeader>
 
     <div class="mb-5"><UiTabs v-model="tab" :tabs="tabs" /></div>
@@ -41,7 +43,7 @@ const tabs = [
         </div>
         <div class="mt-4 flex justify-end gap-2">
           <UiButton variant="ghost">Vazgeç</UiButton>
-          <UiButton variant="primary"><Icon name="plus" :size="16" /> Talep Oluştur</UiButton>
+          <UiButton variant="primary" @click="toast.success('Servis talebiniz tedarikçiye iletildi.')"><Icon name="plus" :size="16" /> Talep Oluştur</UiButton>
         </div>
       </UiCard>
 

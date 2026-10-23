@@ -9,6 +9,8 @@ import DonutChart from '@/components/charts/DonutChart.vue'
 import CarTopView from '@/components/ui/CarTopView.vue'
 import Icon from '@/components/ui/Icon.vue'
 import { tires, tireStatusLabels, tireSummary, tireSeasons, NUM } from '@/data/mock'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 
 // Örnek araç için lastik pozisyon durumları (üstten görünüm)
 const wheelTones = {
@@ -42,7 +44,7 @@ const donut = [
 <template>
   <div>
     <PageHeader eyebrow="Lastik" title="Lastik Yönetimi" subtitle="Araçlarınızdaki lastiklerin durumunu takip edin, değişim ve rotasyon planlarını yönetin.">
-      <template #actions><UiButton variant="primary"><Icon name="plus" :size="16" /> Yeni Lastik Kaydı</UiButton></template>
+      <template #actions><UiButton variant="primary" @click="toast.success('Yeni lastik kayıt formu açıldı.')"><Icon name="plus" :size="16" /> Yeni Lastik Kaydı</UiButton></template>
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">

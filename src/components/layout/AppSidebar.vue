@@ -60,7 +60,7 @@ const soon = ['Şoförlü Araçlar', 'Mobil Uygulama', 'Yapay Zeka Asistan']
     </div>
 
     <!-- Nav -->
-    <nav class="flex-1 space-y-6 overflow-y-auto px-3 py-4">
+    <nav class="sidebar-scroll flex-1 space-y-6 overflow-y-auto px-3 py-4">
       <div v-for="g in groups" :key="g.title">
         <p class="px-3 pb-2 text-[0.65rem] font-bold uppercase tracking-wider text-[color:var(--color-sidebar-faint)]">{{ g.title }}</p>
         <ul class="space-y-0.5">

@@ -7,6 +7,8 @@ import DataTable from '@/components/ui/DataTable.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
 import BarChart from '@/components/charts/BarChart.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 import { fuelKpi, fuelDaily, fuelByType, fuelRecords, topFuelConsumers, TL, NUM } from '@/data/mock'
 
 const trend = Math.round(((fuelKpi.total - fuelKpi.prevTotal) / fuelKpi.prevTotal) * 100)
@@ -25,8 +27,8 @@ const recordCols = [
   <div>
     <PageHeader eyebrow="Gider Analizi" title="Yakıt ve Giderler" subtitle="Araçlarınızın yakıt tüketimi, maliyetleri ve istasyon bilgilerini detaylı takip edin.">
       <template #actions>
-        <UiButton variant="secondary"><Icon name="plus" :size="16" /> Yakıt Kaydı</UiButton>
-        <UiButton variant="primary"><Icon name="download" :size="16" /> Rapor Oluştur</UiButton>
+        <UiButton variant="secondary" @click="toast.success('Yakıt kaydı formu açıldı.')"><Icon name="plus" :size="16" /> Yakıt Kaydı</UiButton>
+        <UiButton variant="primary" @click="toast.info('Yakıt raporu oluşturuluyor…')"><Icon name="download" :size="16" /> Rapor Oluştur</UiButton>
       </template>
     </PageHeader>
 

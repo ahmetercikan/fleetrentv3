@@ -8,6 +8,8 @@ import UiTabs from '@/components/ui/UiTabs.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
 import { hgsRecords, fines, fineStatusLabels, TL } from '@/data/mock'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 
 const tab = ref('hgs')
 const tabs = [
@@ -51,7 +53,7 @@ const totalFines = fines.reduce((s, f) => s + f.amount, 0)
       <template #cell-date="{ row }"><span class="text-ink-soft">{{ new Date(row.date).toLocaleDateString('tr-TR') }}</span></template>
       <template #cell-amount="{ row }"><span class="font-semibold">{{ TL(row.amount) }}</span></template>
       <template #cell-status="{ row }"><UiBadge :tone="fineStatusLabels[row.status].tone" dot>{{ fineStatusLabels[row.status].label }}</UiBadge></template>
-      <template #cell-actions="{ row }"><UiButton v-if="row.status === 'unpaid'" variant="primary" size="sm">Öde</UiButton></template>
+      <template #cell-actions="{ row }"><UiButton v-if="row.status === 'unpaid'" variant="primary" size="sm" @click="toast.success(row.id + ' cezası ödendi.')">Öde</UiButton></template>
     </DataTable>
   </div>
 </template>

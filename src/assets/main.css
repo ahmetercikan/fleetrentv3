@@ -29,15 +29,15 @@
   --color-info: #0ea5e9;
   --color-info-soft: #e0f2fe;
 
-  /* Yüzeyler & kenarlıklar (light) — daha sakin, göz yormayan tonlar */
-  --color-canvas: #e7ebf2;        /* yumuşak gri-mavi zemin (parlama azaltıldı) */
-  --color-surface: #fbfcfe;       /* kartlar: saf beyaz değil, hafif kırık beyaz */
-  --color-surface-muted: #eef1f7;
-  --color-border: #ccd3e0;        /* daha belirgin kenar çizgisi */
-  --color-border-strong: #b4bdce;
-  --color-ink: #0f1729;
-  --color-ink-soft: #454e63;
-  --color-ink-faint: #828ba0;
+  /* Yüzeyler & kenarlıklar (light) — nötr açık gri (parlama azaltıldı) */
+  --color-canvas: #e9eaed;        /* nötr açık gri zemin */
+  --color-surface: #fcfcfd;       /* kartlar: hafif kırık beyaz */
+  --color-surface-muted: #eef0f2;
+  --color-border: #d2d5dc;        /* belirgin, nötr kenar çizgisi */
+  --color-border-strong: #bbbfc8;
+  --color-ink: #11151d;
+  --color-ink-soft: #4a4f5a;
+  --color-ink-faint: #868b96;
 
   /* Sol menü — füme/antrasit (her iki temada koyu kalır) */
   --color-sidebar: #1b2130;
@@ -90,6 +90,22 @@
   }
   ::-webkit-scrollbar-track {
     background: transparent;
+  }
+  /* Füme sol menünün scrollbar'ı — zemine uyumlu, dikkat çekmeyen */
+  .sidebar-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-sidebar-line) transparent;
+  }
+  .sidebar-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  .sidebar-scroll::-webkit-scrollbar-thumb {
+    background: #333e55;
+    border: 2px solid var(--color-sidebar);
+    border-radius: 999px;
+  }
+  .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background: #3f4c68;
   }
 }
 

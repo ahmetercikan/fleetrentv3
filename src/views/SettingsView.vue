@@ -7,6 +7,8 @@ import UiBadge from '@/components/ui/UiBadge.vue'
 import UiTabs from '@/components/ui/UiTabs.vue'
 import Icon from '@/components/ui/Icon.vue'
 import { documents, integrations } from '@/data/mock'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 
 const tab = ref('integrations')
 const tabs = [
@@ -43,7 +45,7 @@ const tabs = [
           <label class="block"><span class="mb-1 block text-xs font-semibold text-ink-soft">Veri Yenileme Sıklığı</span>
             <select class="input-base"><option v-for="r in integrations.gps.refreshOptions" :key="r">{{ r }}</option></select>
           </label>
-          <div class="flex justify-end"><UiButton variant="primary">Ayarları Kaydet</UiButton></div>
+          <div class="flex justify-end"><UiButton variant="primary" @click="toast.success('Entegrasyon ayarları kaydedildi.')">Ayarları Kaydet</UiButton></div>
         </div>
       </UiCard>
 
@@ -63,7 +65,7 @@ const tabs = [
           <label class="block"><span class="mb-1 block text-xs font-semibold text-ink-soft">Otomatik Harcama Eşitleme</span>
             <select class="input-base"><option v-for="s in integrations.utts.syncOptions" :key="s">{{ s }}</option></select>
           </label>
-          <div class="flex justify-end"><UiButton variant="primary">Ayarları Kaydet</UiButton></div>
+          <div class="flex justify-end"><UiButton variant="primary" @click="toast.success('Entegrasyon ayarları kaydedildi.')">Ayarları Kaydet</UiButton></div>
         </div>
       </UiCard>
     </div>
@@ -78,7 +80,7 @@ const tabs = [
           </div>
           <UiBadge :tone="d.uploaded ? 'success' : 'warning'" dot>{{ d.uploaded ? 'Yüklendi' : 'Yüklenmedi' }}</UiBadge>
         </div>
-        <UiButton class="mt-4 w-full" :variant="d.uploaded ? 'secondary' : 'primary'"><Icon name="download" :size="16" /> {{ d.uploaded ? 'Güncelle' : 'Belge Yükle' }}</UiButton>
+        <UiButton class="mt-4 w-full" :variant="d.uploaded ? 'secondary' : 'primary'" @click="toast.success(d.name + ' yükleme penceresi açıldı.')"><Icon name="download" :size="16" /> {{ d.uploaded ? 'Güncelle' : 'Belge Yükle' }}</UiButton>
       </div>
     </div>
 

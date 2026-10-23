@@ -4,6 +4,8 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiBadge from '@/components/ui/UiBadge.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 import { users, userRoleLabels } from '@/data/mock'
 
 const columns = [
@@ -20,7 +22,7 @@ const roleTone = { 'Yönetici': 'brand', 'Operasyon': 'info', 'Görüntüleyici'
 <template>
   <div>
     <PageHeader eyebrow="Ekip" title="Kullanıcılar ve Yetkiler" subtitle="Şirket kullanıcılarını yönetin, rol ve erişim yetkilerini belirleyin.">
-      <template #actions><UiButton variant="primary"><Icon name="plus" :size="16" /> Kullanıcı Davet Et</UiButton></template>
+      <template #actions><UiButton variant="primary" @click="toast.success('Kullanıcı davet formu açıldı.')"><Icon name="plus" :size="16" /> Kullanıcı Davet Et</UiButton></template>
     </PageHeader>
 
     <DataTable :columns="columns" :rows="users">
@@ -32,7 +34,7 @@ const roleTone = { 'Yönetici': 'brand', 'Operasyon': 'info', 'Görüntüleyici'
       </template>
       <template #cell-role="{ row }"><UiBadge :tone="roleTone[row.role]">{{ row.role }}</UiBadge></template>
       <template #cell-status="{ row }"><UiBadge :tone="userRoleLabels[row.status].tone" dot>{{ userRoleLabels[row.status].label }}</UiBadge></template>
-      <template #cell-actions><UiButton variant="ghost" size="sm">Düzenle</UiButton></template>
+      <template #cell-actions="{ row }"><UiButton variant="ghost" size="sm" @click="toast.info(row.name + ' düzenleniyor.')">Düzenle</UiButton></template>
     </DataTable>
   </div>
 </template>

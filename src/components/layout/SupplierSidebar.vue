@@ -35,7 +35,7 @@ const toggle = (label) => (open.value[label] = !open.value[label])
       <span class="rounded-md bg-[color:var(--color-sidebar-soft)] px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wider text-brand-300">Tedarikçi</span>
     </div>
 
-    <nav class="flex-1 space-y-0.5 overflow-y-auto px-3 py-4">
+    <nav class="sidebar-scroll flex-1 space-y-0.5 overflow-y-auto px-3 py-4">
       <template v-for="g in supplierNav" :key="g.label">
         <!-- Düz link -->
         <RouterLink

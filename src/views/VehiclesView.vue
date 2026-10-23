@@ -95,7 +95,7 @@ const wheelTones = computed(() => {
   return b
 })
 const damagePoints = computed(() =>
-  selected.value?.status === 'damage' ? [{ x: 120, y: 46, tone: 'var(--color-danger)' }, { x: 72, y: 210, tone: 'var(--color-warning)' }] : []
+  selected.value?.status === 'damage' ? [{ xPct: 50, yPct: 15, tone: 'var(--color-danger)' }, { xPct: 16, yPct: 48, tone: 'var(--color-warning)' }] : []
 )
 const costBreakdown = computed(() => {
   const v = selected.value

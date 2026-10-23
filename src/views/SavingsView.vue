@@ -6,6 +6,8 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiBadge from '@/components/ui/UiBadge.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 import { savingsFindings, TL } from '@/data/mock'
 
 const totalPotential = savingsFindings.reduce((s, f) => s + f.amount, 0)
@@ -22,7 +24,7 @@ const toneByCat = { 'Yakıt': 'warning', 'Kullanım': 'info', 'HGS': 'danger', '
 <template>
   <div>
     <PageHeader eyebrow="Tasarruf Merkezi" title="Filo Kontrol & Tasarruf" subtitle="Filonuzdaki kullanım, bakım ve gider kayıtlarından inceleme önerileri.">
-      <template #actions><UiButton variant="secondary"><Icon name="download" :size="16" /> CSV İndir</UiButton></template>
+      <template #actions><UiButton variant="secondary" @click="toast.success('Tasarruf raporu indiriliyor…')"><Icon name="download" :size="16" /> CSV İndir</UiButton></template>
     </PageHeader>
 
     <!-- Eşik ayarları -->
@@ -46,7 +48,7 @@ const toneByCat = { 'Yakıt': 'warning', 'Kullanım': 'info', 'HGS': 'danger', '
         <template #cell-category="{ row }"><UiBadge :tone="toneByCat[row.category]">{{ row.category }}</UiBadge></template>
         <template #cell-finding="{ row }"><span class="font-semibold text-ink">{{ row.finding }}</span></template>
         <template #cell-amount="{ row }"><span class="font-semibold">{{ row.amount ? TL(row.amount) : '—' }}</span></template>
-        <template #cell-action="{ row }"><UiButton variant="secondary" size="sm">{{ row.action }}</UiButton></template>
+        <template #cell-action="{ row }"><UiButton variant="secondary" size="sm" @click="toast.info(row.category + ': ' + row.action + ' işlemi başlatıldı.')">{{ row.action }}</UiButton></template>
       </DataTable>
     </UiCard>
   </div>

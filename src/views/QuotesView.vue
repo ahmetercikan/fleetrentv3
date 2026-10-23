@@ -5,6 +5,8 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiBadge from '@/components/ui/UiBadge.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 import { quotes, quoteStatusLabels, signatures, TL } from '@/data/mock'
 
 const columns = [
@@ -23,7 +25,7 @@ const columns = [
   <div>
     <PageHeader eyebrow="Kiralama" title="Talep & Teklifler" subtitle="Tedarikçilerden gelen teklifleri inceleyin, onaylayın, revizyon isteyin veya reddedin.">
       <template #actions>
-        <UiButton variant="primary"><Icon name="plus" :size="16" /> Yeni Teklif İste</UiButton>
+        <UiButton variant="primary" @click="toast.success('Yeni teklif talebi oluşturuldu.')"><Icon name="plus" :size="16" /> Yeni Teklif İste</UiButton>
       </template>
     </PageHeader>
 
@@ -54,9 +56,9 @@ const columns = [
         <template #cell-status="{ row }"><UiBadge :tone="quoteStatusLabels[row.status].tone" dot>{{ quoteStatusLabels[row.status].label }}</UiBadge></template>
         <template #cell-actions="{ row }">
           <div class="flex justify-end gap-1.5">
-            <UiButton v-if="row.status === 'pending'" variant="success" size="sm">Kabul</UiButton>
-            <UiButton v-if="row.status === 'pending'" variant="secondary" size="sm">Revizyon</UiButton>
-            <UiButton variant="ghost" size="sm">Detay</UiButton>
+            <UiButton v-if="row.status === 'pending'" variant="success" size="sm" @click="toast.success(row.id + ' teklifi kabul edildi.')">Kabul</UiButton>
+            <UiButton v-if="row.status === 'pending'" variant="secondary" size="sm" @click="toast.info(row.id + ' için revizyon istendi.')">Revizyon</UiButton>
+            <UiButton variant="ghost" size="sm" @click="toast.info(row.id + ' detayı açılıyor.')">Detay</UiButton>
           </div>
         </template>
       </DataTable>

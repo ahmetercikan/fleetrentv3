@@ -8,6 +8,8 @@ import UiBadge from '@/components/ui/UiBadge.vue'
 import UiTabs from '@/components/ui/UiTabs.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 import { serviceRecords, serviceStatusLabels, TL } from '@/data/mock'
 
 const typeMap = {
@@ -42,7 +44,7 @@ const quick = [
 <template>
   <div>
     <PageHeader eyebrow="Servis Paneli" title="Servis / Bakım & Hasar / Kaza" subtitle="Araç servis, bakım, hasar ve kaza süreçlerini tek ekrandan takip edin.">
-      <template #actions><UiButton variant="primary"><Icon name="plus" :size="16" /> Yeni İş Emri</UiButton></template>
+      <template #actions><UiButton variant="primary" @click="toast.success('Yeni iş emri formu açıldı.')"><Icon name="plus" :size="16" /> Yeni İş Emri</UiButton></template>
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -65,7 +67,7 @@ const quick = [
       <div class="space-y-5">
         <UiCard title="Hızlı İşlemler">
           <div class="grid grid-cols-2 gap-2">
-            <button v-for="q in quick" :key="q.label" class="flex flex-col items-center gap-2 rounded-lg border border-[color:var(--color-border)] p-3 text-center text-xs font-semibold text-ink-soft transition hover:border-brand-400 hover:text-brand-600">
+            <button v-for="q in quick" :key="q.label" @click="toast.success(q.label + ' işlemi başlatıldı.')" class="flex flex-col items-center gap-2 rounded-lg border border-[color:var(--color-border)] p-3 text-center text-xs font-semibold text-ink-soft transition hover:border-brand-400 hover:text-brand-600">
               <Icon :name="q.icon" :size="20" /> {{ q.label }}
             </button>
           </div>

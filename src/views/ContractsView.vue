@@ -5,6 +5,8 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiBadge from '@/components/ui/UiBadge.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 import { contracts, contractStatusLabels, TL, NUM } from '@/data/mock'
 
 const columns = [
@@ -22,7 +24,7 @@ const columns = [
 <template>
   <div>
     <PageHeader eyebrow="Kiralama" title="Sözleşmeler" subtitle="Aktif ve geçmiş kiralama sözleşmelerinizi, e-imza durumlarını yönetin.">
-      <template #actions><UiButton variant="primary"><Icon name="plus" :size="16" /> Yeni Sözleşme</UiButton></template>
+      <template #actions><UiButton variant="primary" @click="toast.success('Yeni sözleşme taslağı oluşturuldu.')"><Icon name="plus" :size="16" /> Yeni Sözleşme</UiButton></template>
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -39,8 +41,8 @@ const columns = [
       <template #cell-status="{ row }"><UiBadge :tone="contractStatusLabels[row.status].tone" dot>{{ contractStatusLabels[row.status].label }}</UiBadge></template>
       <template #cell-actions="{ row }">
         <div class="flex justify-end gap-1.5">
-          <UiButton v-if="!row.signed" variant="primary" size="sm">İmzala</UiButton>
-          <UiButton variant="ghost" size="sm">PDF</UiButton>
+          <UiButton v-if="!row.signed" variant="primary" size="sm" @click="toast.success(row.id + ' e-imzaya gönderildi.')">İmzala</UiButton>
+          <UiButton variant="ghost" size="sm" @click="toast.info(row.id + ' PDF indiriliyor…')">PDF</UiButton>
         </div>
       </template>
     </DataTable>

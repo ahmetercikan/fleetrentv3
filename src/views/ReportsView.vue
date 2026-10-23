@@ -6,6 +6,8 @@ import UiButton from '@/components/ui/UiButton.vue'
 import UiTabs from '@/components/ui/UiTabs.vue'
 import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { useToastStore } from '@/stores/toast'
+const toast = useToastStore()
 import { vehicles, TL } from '@/data/mock'
 
 const tab = ref('cost')
@@ -46,8 +48,8 @@ const columns = [
   <div>
     <PageHeader eyebrow="Operasyonel Filo Raporları" title="Raporlar" subtitle="Filo maliyetleri, lokasyon takibi, kilometre ve kullanıcı analizleri.">
       <template #actions>
-        <UiButton variant="success"><Icon name="download" :size="16" /> CSV İndir</UiButton>
-        <UiButton variant="danger"><Icon name="download" :size="16" /> PDF İndir</UiButton>
+        <UiButton variant="success" @click="toast.success('CSV raporu indiriliyor…')"><Icon name="download" :size="16" /> CSV İndir</UiButton>
+        <UiButton variant="danger" @click="toast.info('PDF raporu hazırlanıyor…')"><Icon name="download" :size="16" /> PDF İndir</UiButton>
       </template>
     </PageHeader>
 
