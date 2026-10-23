@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------ *
+ *  FleetRent v2 — Design System
+ *  Tasarım token'ları. Tüm renk/spacing/gölge buradan türetilir.
+ * ------------------------------------------------------------------ */
+@theme {
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Brand — rafine indigo-mavi */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #4f67f6;
+  --color-brand-600: #3b5bfd;
+  --color-brand-700: #2f49d4;
+  --color-brand-800: #293ca8;
+  --color-brand-900: #263685;
+
+  /* Semantik durum renkleri */
+  --color-success: #10b981;
+  --color-success-soft: #d1fae5;
+  --color-warning: #f59e0b;
+  --color-warning-soft: #fef3c7;
+  --color-danger: #ef4444;
+  --color-danger-soft: #fee2e2;
+  --color-info: #0ea5e9;
+  --color-info-soft: #e0f2fe;
+
+  /* Yüzeyler & kenarlıklar (light) — JS'siz dark override aşağıda */
+  --color-canvas: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f3f5f9;
+  --color-border: #e6e9f0;
+  --color-border-strong: #d4d9e3;
+  --color-ink: #0f1729;
+  --color-ink-soft: #475069;
+  --color-ink-faint: #8a93a8;
+
+  --radius-card: 1rem;
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px -12px rgba(16, 24, 40, 0.12);
+  --shadow-pop: 0 12px 40px -12px rgba(16, 24, 40, 0.22);
+}
+
+/* Dark tema — [data-theme="dark"] veya sistem tercihi */
+:root[data-theme='dark'] {
+  --color-canvas: #0b0f1a;
+  --color-surface: #111726;
+  --color-surface-muted: #161d2e;
+  --color-border: #232c40;
+  --color-border-strong: #2f3a52;
+  --color-ink: #eef1f8;
+  --color-ink-soft: #a7b0c4;
+  --color-ink-faint: #6b7489;
+  --color-brand-50: #1a2250;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+  * {
+    border-color: var(--color-border);
+  }
+  /* İnce, modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 999px;
+    border: 2px solid var(--color-canvas);
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+  .input-base {
+    width: 100%;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    border-radius: 0.6rem;
+    padding: 0.55rem 0.8rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input-base::placeholder {
+    color: var(--color-ink-faint);
+  }
+  .input-base:focus {
+    outline: none;
+    border-color: var(--color-brand-500);
+    box-shadow: 0 0 0 3px var(--color-brand-100);
+  }
+}
+
+/* Reduced-motion'a saygı */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
