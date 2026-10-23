@@ -7,7 +7,16 @@ import UiBadge from '@/components/ui/UiBadge.vue'
 import Icon from '@/components/ui/Icon.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
 import BarChart from '@/components/charts/BarChart.vue'
+import { computed } from 'vue'
 import { company, kpis, monthlyCost, fleetDistribution, contractStatus, upcomingDates, TL, NUM } from '@/data/mock'
+import { useFleetStore } from '@/stores/fleet'
+
+const fleet = useFleetStore()
+const liveKpis = computed(() => ({
+  ...kpis,
+  totalVehicles: fleet.vehicles.length,
+  activeContracts: fleet.byStatus('active').length,
+}))
 
 const costSeries = [
   { key: 'fuel', label: 'Yakıt', tone: '#3b5bfd' },
@@ -28,8 +37,8 @@ const totalFleet = fleetDistribution.reduce((s, d) => s + d.value, 0)
 
     <!-- KPI -->
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-5">
-      <StatTile label="Toplam Araç" :value="kpis.totalVehicles" hint="2 ticari · 6 binek" icon="car" tone="brand" />
-      <StatTile label="Aktif Sözleşme" :value="kpis.activeContracts" hint="2 araç 30 gün içinde bitiyor" icon="doc" tone="success" :trend="4" />
+      <StatTile label="Toplam Araç" :value="liveKpis.totalVehicles" hint="Filoya kayıtlı araç" icon="car" tone="brand" />
+      <StatTile label="Aktif Sözleşme" :value="liveKpis.activeContracts" hint="Aktif durumdaki araçlar" icon="doc" tone="success" :trend="4" />
       <StatTile label="Aylık KM" :value="NUM(kpis.monthlyKm)" hint="Son 30 gün" icon="gauge" tone="info" :trend="-2" />
       <StatTile label="Yakıt Gideri" :value="TL(kpis.monthlyFuel)" hint="Bu ay" icon="fuel" tone="warning" :trend="4" />
       <StatTile label="Toplam Fatura" :value="TL(kpis.monthlyInvoice)" hint="Bu ay" icon="receipt" tone="danger" :trend="9" />

@@ -9,7 +9,9 @@ import DataTable from '@/components/ui/DataTable.vue'
 import Icon from '@/components/ui/Icon.vue'
 import { supplierScreens, badgeTones } from '@/data/supplierScreens'
 import { TL } from '@/data/supplier'
+import { useToastStore } from '@/stores/toast'
 
+const toast = useToastStore()
 const route = useRoute()
 const key = computed(() => route.path.split('/').pop())
 const cfg = computed(() => supplierScreens[key.value] || { title: 'Ekran', columns: [], rows: [] })
@@ -40,8 +42,8 @@ const filteredRows = computed(() => {
   <div :key="key">
     <PageHeader :eyebrow="cfg.eyebrow" :title="cfg.title" :subtitle="cfg.subtitle">
       <template #actions>
-        <UiButton variant="secondary"><Icon name="download" :size="16" /> Dışa Aktar</UiButton>
-        <UiButton v-if="cfg.primary" variant="primary"><Icon name="plus" :size="16" /> {{ cfg.primary }}</UiButton>
+        <UiButton variant="secondary" @click="toast.info('Dışa aktarım hazırlanıyor…')"><Icon name="download" :size="16" /> Dışa Aktar</UiButton>
+        <UiButton v-if="cfg.primary" variant="primary" @click="toast.success(cfg.primary + ' formu açıldı.')"><Icon name="plus" :size="16" /> {{ cfg.primary }}</UiButton>
       </template>
     </PageHeader>
 
