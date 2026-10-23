@@ -1,13 +1,20 @@
 <script setup>
 import { ref } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import Icon from '@/components/ui/Icon.vue'
 import BrandLogo from '@/components/ui/BrandLogo.vue'
 import { useUiStore } from '@/stores/ui'
+import { useAuthStore } from '@/stores/auth'
 import { supplierNav } from '@/data/supplier'
 
 const ui = useUiStore()
 const route = useRoute()
+const router = useRouter()
+const auth = useAuthStore()
+function logout() {
+  auth.logout()
+  router.push('/login')
+}
 // Aktif rotayı içeren grubu açık başlat
 const open = ref(
   supplierNav.reduce((acc, g) => {
@@ -64,10 +71,7 @@ const toggle = (label) => (open.value[label] = !open.value[label])
     </nav>
 
     <div class="border-t border-[color:var(--color-border)] p-3">
-      <RouterLink to="/dashboard" class="mb-1 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted">
-        <Icon name="chevron" :size="18" class="rotate-180" /> Müşteri Paneline Geç
-      </RouterLink>
-      <button class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted">
+      <button @click="logout" class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted">
         <Icon name="logout" :size="19" /> Çıkış Yap
       </button>
     </div>

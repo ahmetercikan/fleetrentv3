@@ -1,10 +1,17 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import Icon from '@/components/ui/Icon.vue'
 import BrandLogo from '@/components/ui/BrandLogo.vue'
 import { useUiStore } from '@/stores/ui'
+import { useAuthStore } from '@/stores/auth'
 
 const ui = useUiStore()
+const auth = useAuthStore()
+const router = useRouter()
+function logout() {
+  auth.logout()
+  router.push('/login')
+}
 
 const groups = [
   {
@@ -86,10 +93,7 @@ const soon = ['Şoförlü Araçlar', 'Mobil Uygulama', 'Yapay Zeka Asistan']
 
     <!-- Alt -->
     <div class="border-t border-[color:var(--color-border)] p-3">
-      <RouterLink to="/supplier" class="mb-1 flex items-center gap-3 rounded-lg bg-surface-muted px-3 py-2.5 text-sm font-semibold text-brand-600 transition hover:brightness-95">
-        <Icon name="truck" :size="19" /> Tedarikçi Portalına Geç
-      </RouterLink>
-      <button class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted">
+      <button @click="logout" class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink-soft transition hover:bg-surface-muted">
         <Icon name="logout" :size="19" /> Çıkış Yap
       </button>
     </div>
