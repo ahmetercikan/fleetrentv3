@@ -9,10 +9,10 @@ import { vehicles } from '@/data/mock'
 
 const tab = ref('maintenance')
 const tabs = [
-  { key: 'maintenance', label: 'Bakım / Onarım', icon: '🔧' },
-  { key: 'tire', label: 'Lastik Hizmetleri', icon: '🛞' },
-  { key: 'replacement', label: 'İkame Araç', icon: '🚗' },
-  { key: 'roadside', label: '7/24 Yol Yardım', icon: '🚨' },
+  { key: 'maintenance', label: 'Bakım / Onarım', icon: 'wrench' },
+  { key: 'tire', label: 'Lastik Hizmetleri', icon: 'tire' },
+  { key: 'replacement', label: 'İkame Araç', icon: 'car' },
+  { key: 'roadside', label: '7/24 Yol Yardım', icon: 'siren' },
 ]
 </script>
 

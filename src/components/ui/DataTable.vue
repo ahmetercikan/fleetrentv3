@@ -1,8 +1,9 @@
 <script setup>
+import Icon from '@/components/ui/Icon.vue'
 defineProps({
   columns: { type: Array, required: true }, // [{ key, label, align?, width?, mono? }]
   rows: { type: Array, default: () => [] },
-  emptyIcon: { type: String, default: '📭' },
+  emptyIcon: { type: String, default: 'box' },
   emptyText: { type: String, default: 'Kayıt bulunamadı.' },
   emptyHint: { type: String, default: '' },
 })
@@ -45,8 +46,8 @@ const alignCls = { right: 'text-right', center: 'text-center', left: 'text-left'
           </tr>
           <tr v-if="!rows.length">
             <td :colspan="columns.length" class="px-4 py-14 text-center">
-              <div class="text-3xl">{{ emptyIcon }}</div>
-              <p class="mt-2 text-sm font-semibold text-ink-soft">{{ emptyText }}</p>
+              <div class="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-surface-muted text-ink-faint"><Icon :name="emptyIcon" :size="24" /></div>
+              <p class="mt-3 text-sm font-semibold text-ink-soft">{{ emptyText }}</p>
               <p v-if="emptyHint" class="mt-1 text-xs text-ink-faint">{{ emptyHint }}</p>
             </td>
           </tr>

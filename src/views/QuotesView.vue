@@ -30,15 +30,15 @@ const columns = [
     <!-- Teklif tipi kartları -->
     <div class="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
       <div v-for="t in [
-        { t: 'Kurumsal Teklif', d: 'Çoklu araç, filo bazlı fiyatlandırma', i: '🏢', c: 'brand' },
-        { t: 'Bireysel Teklif', d: 'Tek araç uzun dönem kiralama', i: '👤', c: 'success' },
-        { t: 'R2R Teklif', d: 'Rent-to-rent portföy yönetimi', i: '🔁', c: 'info' },
+        { t: 'Kurumsal Teklif', d: 'Çoklu araç, filo bazlı fiyatlandırma', i: 'building', c: 'brand' },
+        { t: 'Bireysel Teklif', d: 'Tek araç uzun dönem kiralama', i: 'user', c: 'success' },
+        { t: 'R2R Teklif', d: 'Rent-to-rent portföy yönetimi', i: 'repeat', c: 'info' },
       ]" :key="t.t" class="card flex items-center gap-4 p-5 transition hover:shadow-[var(--shadow-pop)]">
         <span class="grid h-12 w-12 place-items-center rounded-xl text-xl" :class="{
           'bg-brand-100 text-brand-700': t.c === 'brand',
           'bg-success-soft text-success': t.c === 'success',
           'bg-info-soft text-info': t.c === 'info',
-        }">{{ t.i }}</span>
+        }"><Icon :name="t.i" :size="22" /></span>
         <div class="flex-1">
           <p class="font-bold">{{ t.t }}</p>
           <p class="text-xs text-ink-faint">{{ t.d }}</p>
@@ -48,7 +48,7 @@ const columns = [
     </div>
 
     <UiCard title="Tedarikçilerden Gelen Teklifler" subtitle="Güncel teklif sürümünü kabul edin, revizyon isteyin veya reddedin." pad="false">
-      <DataTable :columns="columns" :rows="quotes" empty-icon="📑" empty-text="Henüz gönderilmiş tedarikçi teklifi yok.">
+      <DataTable :columns="columns" :rows="quotes" empty-icon="doc" empty-text="Henüz gönderilmiş tedarikçi teklifi yok.">
         <template #cell-type="{ row }"><UiBadge tone="neutral">{{ row.type }}</UiBadge></template>
         <template #cell-monthly="{ row }"><span class="font-semibold">{{ TL(row.monthly) }}</span></template>
         <template #cell-status="{ row }"><UiBadge :tone="quoteStatusLabels[row.status].tone" dot>{{ quoteStatusLabels[row.status].label }}</UiBadge></template>

@@ -10,12 +10,12 @@ import { vehicles, TL } from '@/data/mock'
 
 const tab = ref('cost')
 const tabs = [
-  { key: 'cost', label: 'Araç Maliyet', icon: '📊' },
-  { key: 'location', label: 'Lokasyon', icon: '📍' },
-  { key: 'km', label: 'Kilometre', icon: '🚗' },
-  { key: 'usage', label: 'Kullanım Süresi', icon: '⏱️' },
-  { key: 'service', label: 'Servis Süresi', icon: '🔧' },
-  { key: 'user', label: 'Kullanıcı', icon: '👤' },
+  { key: 'cost', label: 'Araç Maliyet', icon: 'report' },
+  { key: 'location', label: 'Lokasyon', icon: 'map' },
+  { key: 'km', label: 'Kilometre', icon: 'car' },
+  { key: 'usage', label: 'Kullanım Süresi', icon: 'clock' },
+  { key: 'service', label: 'Servis Süresi', icon: 'wrench' },
+  { key: 'user', label: 'Kullanıcı', icon: 'user' },
 ]
 
 // Birleşik maliyet raporu (tüm modüllerden)
@@ -78,7 +78,7 @@ const columns = [
     </template>
     <UiCard v-else :title="tabs.find(t => t.key === tab).label + ' Raporu'">
       <div class="grid place-items-center py-16 text-center">
-        <div class="text-4xl">{{ tabs.find(t => t.key === tab).icon }}</div>
+        <div class="grid h-14 w-14 place-items-center rounded-2xl bg-surface-muted text-ink-faint"><Icon :name="tabs.find(t => t.key === tab).icon" :size="26" /></div>
         <p class="mt-3 text-sm font-semibold text-ink-soft">{{ tabs.find(t => t.key === tab).label }} raporu</p>
         <p class="mt-1 text-xs text-ink-faint">Bu rapor tipi için tarih aralığı seçip filtreleyin.</p>
       </div>

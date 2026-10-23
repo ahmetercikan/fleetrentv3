@@ -1,4 +1,5 @@
 <script setup>
+import Icon from '@/components/ui/Icon.vue'
 defineProps({
   tabs: { type: Array, required: true }, // [{ key, label, count?, icon? }]
   modelValue: { type: String, required: true },
@@ -15,7 +16,7 @@ defineEmits(['update:modelValue'])
       class="inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold transition"
       :class="modelValue === t.key ? 'bg-brand-600 text-white shadow-sm' : 'text-ink-soft hover:bg-surface-muted'"
     >
-      <span v-if="t.icon">{{ t.icon }}</span>
+      <Icon v-if="t.icon" :name="t.icon" :size="16" />
       {{ t.label }}
       <span
         v-if="t.count !== undefined"

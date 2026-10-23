@@ -1,9 +1,10 @@
 <script setup>
+import Icon from '@/components/ui/Icon.vue'
 defineProps({
   label: String,
   value: [String, Number],
   hint: { type: String, default: '' },
-  icon: { type: String, default: '📊' },
+  icon: { type: String, default: 'report' },
   tone: { type: String, default: 'brand' }, // brand|success|warning|danger|info
   trend: { type: Number, default: null }, // yüzde değişim
 })
@@ -19,7 +20,7 @@ const toneRing = {
 <template>
   <div class="card p-5 transition hover:shadow-[var(--shadow-pop)]">
     <div class="flex items-start justify-between">
-      <span class="grid h-11 w-11 place-items-center rounded-xl text-lg" :class="toneRing[tone]">{{ icon }}</span>
+      <span class="grid h-11 w-11 place-items-center rounded-xl" :class="toneRing[tone]"><Icon :name="icon" :size="21" /></span>
       <span
         v-if="trend !== null"
         class="text-xs font-semibold"

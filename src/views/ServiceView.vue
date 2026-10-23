@@ -46,16 +46,16 @@ const quick = [
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <StatTile label="Toplam Servis / Bakım" :value="2" icon="🔧" tone="brand" />
-      <StatTile label="Toplam Hasar / Kaza" :value="1" icon="⚠️" tone="danger" />
-      <StatTile label="Açık İş Emri" :value="1" icon="📋" tone="warning" />
-      <StatTile label="Bakımı Yaklaşan" :value="2" icon="🗓️" tone="info" />
+      <StatTile label="Toplam Servis / Bakım" :value="2" icon="wrench" tone="brand" />
+      <StatTile label="Toplam Hasar / Kaza" :value="1" icon="alert" tone="danger" />
+      <StatTile label="Açık İş Emri" :value="1" icon="clipboard" tone="warning" />
+      <StatTile label="Bakımı Yaklaşan" :value="2" icon="calendar" tone="info" />
     </div>
 
     <div class="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-4">
       <div class="xl:col-span-3">
         <div class="mb-4"><UiTabs v-model="tab" :tabs="tabs" /></div>
-        <DataTable :columns="columns" :rows="filtered" empty-icon="🔧" empty-text="Kayıt bulunamadı." empty-hint="Yeni iş emri oluşturarak süreci başlatabilirsiniz.">
+        <DataTable :columns="columns" :rows="filtered" empty-icon="wrench" empty-text="Kayıt bulunamadı." empty-hint="Yeni iş emri oluşturarak süreci başlatabilirsiniz.">
           <template #cell-date="{ row }"><span class="text-ink-soft">{{ new Date(row.date).toLocaleDateString('tr-TR') }}</span></template>
           <template #cell-status="{ row }"><UiBadge :tone="serviceStatusLabels[row.status].tone" dot>{{ serviceStatusLabels[row.status].label }}</UiBadge></template>
           <template #cell-amount="{ row }"><span class="font-semibold">{{ TL(row.amount) }}</span></template>

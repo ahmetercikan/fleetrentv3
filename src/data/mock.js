@@ -216,10 +216,10 @@ export const invoiceStatusLabels = {
   paid: { label: 'Ödendi', tone: 'success' }, open: { label: 'Açık', tone: 'warning' }, overdue: { label: 'Gecikmiş', tone: 'danger' },
 }
 export const notifications = [
-  { id: 1, icon: '📄', title: 'Sözleşme bitişi yaklaşıyor', body: '34 FLT 781 sözleşmesi 11.11.2026 tarihinde sona eriyor.', time: '2 saat önce', tone: 'danger', unread: true },
-  { id: 2, icon: '🔧', title: 'Periyodik bakım hatırlatması', body: '34 FLT 212 — 40.000 km bakımı planlanmalı.', time: '5 saat önce', tone: 'warning', unread: true },
-  { id: 3, icon: '⛽', title: 'UTTS harcama senkronu', body: 'Dün 3 araç için 7 yakıt fişi otomatik içe aktarıldı.', time: 'Dün', tone: 'info', unread: false },
-  { id: 4, icon: '✅', title: 'Teklif kabul edildi', body: 'TKF-2035 teklifi onaylandı, sözleşme imzaya hazır.', time: '2 gün önce', tone: 'success', unread: false },
+  { id: 1, icon: 'doc', title: 'Sözleşme bitişi yaklaşıyor', body: '34 FLT 781 sözleşmesi 11.11.2026 tarihinde sona eriyor.', time: '2 saat önce', tone: 'danger', unread: true },
+  { id: 2, icon: 'wrench', title: 'Periyodik bakım hatırlatması', body: '34 FLT 212 — 40.000 km bakımı planlanmalı.', time: '5 saat önce', tone: 'warning', unread: true },
+  { id: 3, icon: 'fuel', title: 'UTTS harcama senkronu', body: 'Dün 3 araç için 7 yakıt fişi otomatik içe aktarıldı.', time: 'Dün', tone: 'info', unread: false },
+  { id: 4, icon: 'check-circle', title: 'Teklif kabul edildi', body: 'TKF-2035 teklifi onaylandı, sözleşme imzaya hazır.', time: '2 gün önce', tone: 'success', unread: false },
 ]
 
 export const TL = (n) => '₺' + Number(n || 0).toLocaleString('tr-TR')

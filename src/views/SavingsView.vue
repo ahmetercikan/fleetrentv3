@@ -35,10 +35,10 @@ const toneByCat = { 'Yakıt': 'warning', 'Kullanım': 'info', 'HGS': 'danger', '
     </UiCard>
 
     <div class="mb-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <StatTile label="İnceleme Tespiti" :value="savingsFindings.length" icon="🔍" tone="brand" />
-      <StatTile label="Potansiyel Tutar" :value="TL(totalPotential)" icon="💰" tone="success" />
-      <StatTile label="Yakıt Uyarısı" :value="1" icon="⛽" tone="warning" />
-      <StatTile label="Kullanım Uyarısı" :value="1" icon="🧭" tone="info" />
+      <StatTile label="İnceleme Tespiti" :value="savingsFindings.length" icon="search" tone="brand" />
+      <StatTile label="Potansiyel Tutar" :value="TL(totalPotential)" icon="wallet" tone="success" />
+      <StatTile label="Yakıt Uyarısı" :value="1" icon="fuel" tone="warning" />
+      <StatTile label="Kullanım Uyarısı" :value="1" icon="gauge" tone="info" />
     </div>
 
     <UiCard title="Tespitler ve Öneriler" subtitle="Bu tespitler inceleme önerisidir; gerçekleşmiş tasarruf değildir." pad="false">

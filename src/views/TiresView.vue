@@ -33,15 +33,15 @@ const donut = [
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <StatTile label="Toplam Lastik" :value="tires.length" icon="🛞" tone="brand" />
-      <StatTile label="Değişim Bekleyen" :value="tireSummary.change" icon="🔴" tone="danger" />
-      <StatTile label="Rotasyon Bekleyen" :value="1" icon="🔄" tone="warning" />
-      <StatTile label="Mücbir Durum" :value="tireSummary.force" icon="⚠️" tone="info" />
+      <StatTile label="Toplam Lastik" :value="tires.length" icon="tire" tone="brand" />
+      <StatTile label="Değişim Bekleyen" :value="tireSummary.change" icon="alert" tone="danger" />
+      <StatTile label="Rotasyon Bekleyen" :value="1" icon="refresh" tone="warning" />
+      <StatTile label="Mücbir Durum" :value="tireSummary.force" icon="alert" tone="info" />
     </div>
 
     <div class="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-4">
       <div class="xl:col-span-3">
-        <DataTable :columns="columns" :rows="tires" empty-icon="🛞" empty-text="Filtrelere uygun lastik kaydı yok.">
+        <DataTable :columns="columns" :rows="tires" empty-icon="tire" empty-text="Filtrelere uygun lastik kaydı yok.">
           <template #cell-status="{ row }"><UiBadge :tone="tireStatusLabels[row.status].tone" dot>{{ tireStatusLabels[row.status].label }}</UiBadge></template>
           <template #cell-remainingKm="{ row }"><span class="font-medium">{{ NUM(row.remainingKm) }}</span></template>
         </DataTable>

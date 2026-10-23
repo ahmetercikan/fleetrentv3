@@ -23,10 +23,10 @@ const open = invoices.filter((i) => i.status !== 'paid').reduce((s, i) => s + i.
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <StatTile label="Toplam Fatura" :value="invoices.length" icon="🧾" tone="brand" />
-      <StatTile label="Açık Bakiye" :value="TL(open)" icon="⏳" tone="warning" />
-      <StatTile label="Gecikmiş" :value="invoices.filter(i => i.status === 'overdue').length" icon="🔴" tone="danger" />
-      <StatTile label="Bu Ay Ödenen" :value="TL(28500)" icon="✅" tone="success" />
+      <StatTile label="Toplam Fatura" :value="invoices.length" icon="receipt" tone="brand" />
+      <StatTile label="Açık Bakiye" :value="TL(open)" icon="clock" tone="warning" />
+      <StatTile label="Gecikmiş" :value="invoices.filter(i => i.status === 'overdue').length" icon="alert" tone="danger" />
+      <StatTile label="Bu Ay Ödenen" :value="TL(28500)" icon="check-circle" tone="success" />
     </div>
 
     <DataTable class="mt-5" :columns="columns" :rows="invoices">

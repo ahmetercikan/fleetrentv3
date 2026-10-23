@@ -37,7 +37,7 @@ export const badgeTones = {
 // key = route son parçası
 export const supplierScreens = {
   vehicles: { eyebrow: 'Filo', title: 'Araçlar', subtitle: 'Filonuzdaki tüm araçları ve yaşam döngüsünü yönetin.',
-    stats: [{ label: 'Toplam Araç', value: 42, icon: '🚗', tone: 'brand' }, { label: 'Kirada', value: 28, icon: '🔑', tone: 'success' }, { label: 'Havuzda', value: 7, icon: '🅿️', tone: 'info' }, { label: 'Serviste', value: 4, icon: '🔧', tone: 'warning' }],
+    stats: [{ label: 'Toplam Araç', value: 42, icon: 'car', tone: 'brand' }, { label: 'Kirada', value: 28, icon: 'key', tone: 'success' }, { label: 'Havuzda', value: 7, icon: 'parking', tone: 'info' }, { label: 'Serviste', value: 4, icon: 'wrench', tone: 'warning' }],
     columns: emptyCols, rows: [], primary: 'Yeni Araç' },
   maintenance: { eyebrow: 'Filo Sağlığı', title: 'Bakım Önerileri', subtitle: 'KM ve tarihe göre bakımı yaklaşan araçlar.', columns: emptyCols, rows: [] },
   service: { eyebrow: 'Filo', title: 'Servis & Bakım', subtitle: 'Servis iş emirleri ve bakım geçmişi.', columns: emptyCols, rows: [], primary: 'Yeni İş Emri' },
@@ -51,7 +51,7 @@ export const supplierScreens = {
 
   reservations: { eyebrow: 'Kiralama', title: 'Rezervasyonlar', subtitle: 'Gelen rezervasyon talepleri ve onay durumu.', columns: emptyCols, rows: [], primary: 'Yeni Rezervasyon' },
   rentals: { eyebrow: 'Kiralama', title: 'Kiralamalar', subtitle: 'Araç bazında teslimat, iade ve müşteri atamalarını takip edin.',
-    stats: [{ label: 'Toplam Kayıt', value: sampleRentals.length, icon: '📄', tone: 'brand' }, { label: 'Aktif', value: 2, icon: '✅', tone: 'success' }, { label: 'Bitişe Yakın', value: 1, icon: '⏳', tone: 'warning' }],
+    stats: [{ label: 'Toplam Kayıt', value: sampleRentals.length, icon: 'doc', tone: 'brand' }, { label: 'Aktif', value: 2, icon: 'check-circle', tone: 'success' }, { label: 'Bitişe Yakın', value: 1, icon: 'clock', tone: 'warning' }],
     columns: rentalCols, rows: sampleRentals, primary: 'Yeni Kiralama' },
   offers: { eyebrow: 'Kiralama', title: 'Teklifler', subtitle: 'Müşterilere gönderilen teklifler ve revizyonlar.', columns: emptyCols, rows: [], primary: 'Yeni Teklif' },
   contracts: { eyebrow: 'Kiralama', title: 'Sözleşmeler', subtitle: 'İmzalı sözleşmeler ve e-imza teyitleri.', columns: emptyCols, rows: [] },
@@ -60,15 +60,15 @@ export const supplierScreens = {
   marketplace: { eyebrow: 'Pazar', title: 'Kiralama İhaleleri', subtitle: 'Açık talep ihalelerine teklif verin, filonuzu değerlendirin.', columns: emptyCols, rows: [] },
 
   invoices: { eyebrow: 'Muhasebe', title: 'Faturalar', subtitle: 'Kesilen faturalar, tahsilat durumu ve açık bakiye.',
-    stats: [{ label: 'Toplam Fatura', value: TL(83900), icon: '🧾', tone: 'brand' }, { label: 'Ödendi', value: TL(28500), icon: '✅', tone: 'success' }, { label: 'Açık', value: TL(24200), icon: '⏳', tone: 'warning' }, { label: 'Gecikmiş', value: TL(31200), icon: '🔴', tone: 'danger' }],
+    stats: [{ label: 'Toplam Fatura', value: TL(83900), icon: 'receipt', tone: 'brand' }, { label: 'Ödendi', value: TL(28500), icon: 'check-circle', tone: 'success' }, { label: 'Açık', value: TL(24200), icon: 'clock', tone: 'warning' }, { label: 'Gecikmiş', value: TL(31200), icon: 'alert', tone: 'danger' }],
     columns: invoiceCols, rows: sampleInvoices, primary: 'Fatura Kes' },
   accounting: { eyebrow: 'Muhasebe', title: 'Muhasebe', subtitle: 'Faturalara bağlı tahsilat ve ödemeler ile açık bakiyeleri tek ekrandan takip edin.',
-    stats: [{ label: 'Tahsilat', value: TL(28500), icon: '💰', tone: 'success' }, { label: 'Ödemeler', value: TL(12400), icon: '💸', tone: 'warning' }, { label: 'Açık Alacak', value: TL(55400), icon: '📂', tone: 'danger' }, { label: 'Kayıtlı Ciro', value: TL(1620000), icon: '📈', tone: 'brand' }],
+    stats: [{ label: 'Tahsilat', value: TL(28500), icon: 'wallet', tone: 'success' }, { label: 'Ödemeler', value: TL(12400), icon: 'wallet', tone: 'warning' }, { label: 'Açık Alacak', value: TL(55400), icon: 'folder', tone: 'danger' }, { label: 'Kayıtlı Ciro', value: TL(1620000), icon: 'trending', tone: 'brand' }],
     columns: invoiceCols, rows: sampleInvoices },
   approvals: { eyebrow: 'Muhasebe', title: 'Onay & Yetki', subtitle: 'Bekleyen onaylar ve yetki talepleri.', columns: emptyCols, rows: [] },
 
   customers: { eyebrow: 'CRM', title: 'Müşteriler', subtitle: 'Kurumsal ve bireysel müşteri portföyünüz.',
-    stats: [{ label: 'Toplam Müşteri', value: sampleCustomers.length, icon: '👥', tone: 'brand' }, { label: 'Kurumsal', value: 2, icon: '🏢', tone: 'info' }, { label: 'Bireysel', value: 1, icon: '👤', tone: 'success' }],
+    stats: [{ label: 'Toplam Müşteri', value: sampleCustomers.length, icon: 'users', tone: 'brand' }, { label: 'Kurumsal', value: 2, icon: 'building', tone: 'info' }, { label: 'Bireysel', value: 1, icon: 'user', tone: 'success' }],
     columns: [
       { key: 'name', label: 'Müşteri' }, { key: 'type', label: 'Tip' },
       { key: 'vehicles', label: 'Araç', align: 'center' },

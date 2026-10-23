@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import Icon from '@/components/ui/Icon.vue'
+import BrandLogo from '@/components/ui/BrandLogo.vue'
 import { useUiStore } from '@/stores/ui'
 
 const ui = useUiStore()
@@ -47,11 +48,8 @@ const soon = ['Şoförlü Araçlar', 'Mobil Uygulama', 'Yapay Zeka Asistan']
     :class="ui.mobileNavOpen ? 'translate-x-0' : '-translate-x-full'"
   >
     <!-- Logo -->
-    <div class="flex h-16 items-center gap-2.5 px-5">
-      <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-600 text-white shadow-sm">
-        <Icon name="car" :size="20" />
-      </span>
-      <span class="text-lg font-extrabold tracking-tight">fleet<span class="text-brand-600">rent</span></span>
+    <div class="flex h-16 items-center px-5">
+      <RouterLink to="/dashboard"><BrandLogo :size="32" /></RouterLink>
     </div>
 
     <!-- Nav -->

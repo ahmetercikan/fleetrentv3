@@ -28,11 +28,11 @@ const totalFleet = fleetDistribution.reduce((s, d) => s + d.value, 0)
 
     <!-- KPI -->
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-5">
-      <StatTile label="Toplam Araç" :value="kpis.totalVehicles" hint="2 ticari · 6 binek" icon="🚗" tone="brand" />
-      <StatTile label="Aktif Sözleşme" :value="kpis.activeContracts" hint="2 araç 30 gün içinde bitiyor" icon="📄" tone="success" :trend="4" />
-      <StatTile label="Aylık KM" :value="NUM(kpis.monthlyKm)" hint="Son 30 gün" icon="🧭" tone="info" :trend="-2" />
-      <StatTile label="Yakıt Gideri" :value="TL(kpis.monthlyFuel)" hint="Bu ay" icon="⛽" tone="warning" :trend="4" />
-      <StatTile label="Toplam Fatura" :value="TL(kpis.monthlyInvoice)" hint="Bu ay" icon="🧾" tone="danger" :trend="9" />
+      <StatTile label="Toplam Araç" :value="kpis.totalVehicles" hint="2 ticari · 6 binek" icon="car" tone="brand" />
+      <StatTile label="Aktif Sözleşme" :value="kpis.activeContracts" hint="2 araç 30 gün içinde bitiyor" icon="doc" tone="success" :trend="4" />
+      <StatTile label="Aylık KM" :value="NUM(kpis.monthlyKm)" hint="Son 30 gün" icon="gauge" tone="info" :trend="-2" />
+      <StatTile label="Yakıt Gideri" :value="TL(kpis.monthlyFuel)" hint="Bu ay" icon="fuel" tone="warning" :trend="4" />
+      <StatTile label="Toplam Fatura" :value="TL(kpis.monthlyInvoice)" hint="Bu ay" icon="receipt" tone="danger" :trend="9" />
     </div>
 
     <!-- Orta sıra -->

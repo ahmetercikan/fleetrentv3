@@ -40,7 +40,7 @@ const cfg = computed(() => supplierScreens[key.value] || { title: 'Ekran', colum
       <UiButton variant="primary">Filtrele</UiButton>
     </div>
 
-    <DataTable :columns="cfg.columns" :rows="cfg.rows" empty-icon="🗂️" empty-text="Bu filtrelere uygun kayıt bulunamadı." empty-hint="Yeni kayıt ekleyerek başlayabilirsiniz.">
+    <DataTable :columns="cfg.columns" :rows="cfg.rows" empty-icon="box" empty-text="Bu filtrelere uygun kayıt bulunamadı." empty-hint="Yeni kayıt ekleyerek başlayabilirsiniz.">
       <template v-for="col in cfg.columns.filter(c => c.badge)" :key="col.key" #[`cell-${col.key}`]="{ row }">
         <UiBadge :tone="badgeTones[row[col.key]] || 'neutral'" dot>{{ row[col.key] }}</UiBadge>
       </template>

@@ -68,13 +68,13 @@ export const supplierKpi = {
   pendingDelivery: 3, pendingReturn: 2, maintenanceHints: 4, matchPending: 1,
 }
 export const fleetStatus = [
-  { label: 'Toplam Araç', value: 42, icon: '🚗', tone: 'brand' },
-  { label: 'Kirada', value: 28, icon: '🔑', tone: 'success' },
-  { label: 'Havuzda', value: 7, icon: '🅿️', tone: 'info' },
-  { label: 'Serviste', value: 4, icon: '🔧', tone: 'warning' },
-  { label: 'Satışta', value: 2, icon: '🏷️', tone: 'neutral' },
-  { label: 'Pasif', value: 1, icon: '⏸️', tone: 'neutral' },
-  { label: 'Hasar', value: 2, icon: '⚠️', tone: 'danger' },
+  { label: 'Toplam Araç', value: 42, icon: 'car', tone: 'brand' },
+  { label: 'Kirada', value: 28, icon: 'key', tone: 'success' },
+  { label: 'Havuzda', value: 7, icon: 'parking', tone: 'info' },
+  { label: 'Serviste', value: 4, icon: 'wrench', tone: 'warning' },
+  { label: 'Satışta', value: 2, icon: 'tag', tone: 'neutral' },
+  { label: 'Pasif', value: 1, icon: 'pause', tone: 'neutral' },
+  { label: 'Hasar', value: 2, icon: 'alert', tone: 'danger' },
 ]
 export const fleetStatusDonut = [
   { label: 'Kirada', value: 28, tone: '#10b981' },

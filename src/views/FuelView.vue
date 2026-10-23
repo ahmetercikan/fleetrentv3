@@ -31,10 +31,10 @@ const recordCols = [
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <StatTile label="Toplam Yakıt Gideri" :value="TL(fuelKpi.total)" hint="Önceki döneme göre" icon="⛽" tone="brand" :trend="trend" />
-      <StatTile label="Toplam Yakıt Alımı" :value="NUM(fuelKpi.liters) + ' L'" icon="🛢️" tone="info" />
-      <StatTile label="Ortalama Tüketim" :value="fuelKpi.avgConsumption + ' L/100'" icon="📉" tone="success" />
-      <StatTile label="Ortalama Yakıt Fiyatı" :value="TL(fuelKpi.avgPrice)" icon="🏷️" tone="warning" />
+      <StatTile label="Toplam Yakıt Gideri" :value="TL(fuelKpi.total)" hint="Önceki döneme göre" icon="fuel" tone="brand" :trend="trend" />
+      <StatTile label="Toplam Yakıt Alımı" :value="NUM(fuelKpi.liters) + ' L'" icon="droplet" tone="info" />
+      <StatTile label="Ortalama Tüketim" :value="fuelKpi.avgConsumption + ' L/100'" icon="gauge" tone="success" />
+      <StatTile label="Ortalama Yakıt Fiyatı" :value="TL(fuelKpi.avgPrice)" icon="tag" tone="warning" />
     </div>
 
     <div class="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-3">

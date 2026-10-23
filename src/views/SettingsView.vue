@@ -10,11 +10,11 @@ import { documents, integrations } from '@/data/mock'
 
 const tab = ref('integrations')
 const tabs = [
-  { key: 'users', label: 'Kullanıcılar', icon: '👥' },
-  { key: 'delivery', label: 'Teslim Formları', icon: '📋' },
-  { key: 'dealer', label: 'Bayi Sözleşmesi', icon: '📜' },
-  { key: 'docs', label: 'Şirket Evraklarım', icon: '🏢' },
-  { key: 'integrations', label: 'API & Entegrasyonlar', icon: '📡' },
+  { key: 'users', label: 'Kullanıcılar', icon: 'users' },
+  { key: 'delivery', label: 'Teslim Formları', icon: 'clipboard' },
+  { key: 'dealer', label: 'Bayi Sözleşmesi', icon: 'doc' },
+  { key: 'docs', label: 'Şirket Evraklarım', icon: 'building' },
+  { key: 'integrations', label: 'API & Entegrasyonlar', icon: 'plug' },
 ]
 </script>
 
@@ -85,7 +85,7 @@ const tabs = [
     <!-- Diğer sekmeler -->
     <UiCard v-else :title="tabs.find(t => t.key === tab).label">
       <div class="grid place-items-center py-16 text-center">
-        <div class="text-4xl">{{ tabs.find(t => t.key === tab).icon }}</div>
+        <div class="grid h-14 w-14 place-items-center rounded-2xl bg-surface-muted text-ink-faint"><Icon :name="tabs.find(t => t.key === tab).icon" :size="26" /></div>
         <p class="mt-3 text-sm font-semibold text-ink-soft">{{ tabs.find(t => t.key === tab).label }}</p>
         <p class="mt-1 text-xs text-ink-faint">Bu bölüm yakında bu ekranda yönetilecek.</p>
       </div>

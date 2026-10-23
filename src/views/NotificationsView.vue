@@ -3,6 +3,7 @@ import PageHeader from '@/components/ui/PageHeader.vue'
 import UiCard from '@/components/ui/UiCard.vue'
 import UiButton from '@/components/ui/UiButton.vue'
 import UiBadge from '@/components/ui/UiBadge.vue'
+import Icon from '@/components/ui/Icon.vue'
 import { notifications } from '@/data/mock'
 
 const toneBg = {
@@ -20,7 +21,7 @@ const toneBg = {
     <UiCard pad="false">
       <ul class="divide-y divide-[color:var(--color-border)]">
         <li v-for="n in notifications" :key="n.id" class="flex items-start gap-4 px-5 py-4 transition hover:bg-surface-muted/50" :class="n.unread ? 'bg-brand-50/40' : ''">
-          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl text-lg" :class="toneBg[n.tone]">{{ n.icon }}</span>
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl" :class="toneBg[n.tone]"><Icon :name="n.icon" :size="20" /></span>
           <div class="flex-1">
             <div class="flex items-center gap-2">
               <p class="font-semibold">{{ n.title }}</p>

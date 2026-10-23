@@ -51,11 +51,11 @@ const columns = [
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-5">
-      <StatTile label="Toplam Araç" :value="stats.total" icon="🚗" tone="brand" />
-      <StatTile label="Aktif" :value="stats.active" icon="✅" tone="success" />
-      <StatTile label="Serviste" :value="stats.service" icon="🔧" tone="warning" />
-      <StatTile label="Hasar / Kaza" :value="stats.damage" icon="⚠️" tone="danger" />
-      <StatTile label="İkame Bekliyor" :value="stats.replacement" icon="🔄" tone="info" />
+      <StatTile label="Toplam Araç" :value="stats.total" icon="car" tone="brand" />
+      <StatTile label="Aktif" :value="stats.active" icon="check-circle" tone="success" />
+      <StatTile label="Serviste" :value="stats.service" icon="wrench" tone="warning" />
+      <StatTile label="Hasar / Kaza" :value="stats.damage" icon="alert" tone="danger" />
+      <StatTile label="İkame Bekliyor" :value="stats.replacement" icon="refresh" tone="info" />
     </div>
 
     <!-- Filtre barı -->
@@ -71,7 +71,7 @@ const columns = [
       <UiButton variant="secondary"><Icon name="filter" :size="16" /> Filtrele</UiButton>
     </div>
 
-    <DataTable :columns="columns" :rows="filtered" empty-icon="🚗" empty-text="Filtrelere uygun araç bulunamadı." empty-hint="Aramayı temizleyin veya yeni araç ekleyin.">
+    <DataTable :columns="columns" :rows="filtered" empty-icon="car" empty-text="Filtrelere uygun araç bulunamadı." empty-hint="Aramayı temizleyin veya yeni araç ekleyin.">
       <template #cell-vehicle="{ row }">
         <div>
           <p class="font-semibold text-ink">{{ row.brand }} {{ row.model }}</p>

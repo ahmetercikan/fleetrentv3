@@ -31,9 +31,9 @@ const cols = [
     </PageHeader>
 
     <div class="grid grid-cols-3 gap-4">
-      <StatTile label="Açık İş" :value="opsTasks.filter(t => t.status === 'open').length" icon="📋" tone="info" />
-      <StatTile label="Geciken" :value="opsTasks.filter(t => t.status === 'late').length" icon="⏰" tone="danger" />
-      <StatTile label="Bugün" :value="opsTasks.filter(t => t.status === 'today').length" icon="📅" tone="warning" />
+      <StatTile label="Açık İş" :value="opsTasks.filter(t => t.status === 'open').length" icon="clipboard" tone="info" />
+      <StatTile label="Geciken" :value="opsTasks.filter(t => t.status === 'late').length" icon="clock" tone="danger" />
+      <StatTile label="Bugün" :value="opsTasks.filter(t => t.status === 'today').length" icon="calendar" tone="warning" />
     </div>
 
     <div class="my-5"><UiTabs v-model="tab" :tabs="tabs" /></div>

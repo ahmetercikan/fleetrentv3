@@ -26,10 +26,10 @@ const columns = [
     </PageHeader>
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <StatTile label="Aktif Sözleşme" :value="contracts.filter(c => c.status === 'active').length" icon="📄" tone="success" />
-      <StatTile label="Bitişe Yakın" :value="contracts.filter(c => c.status === 'ending').length" icon="⏳" tone="warning" />
-      <StatTile label="İmza Bekleyen" :value="contracts.filter(c => c.status === 'draft').length" icon="✍️" tone="info" />
-      <StatTile label="Süresi Dolan" :value="contracts.filter(c => c.status === 'expired').length" icon="🔴" tone="danger" />
+      <StatTile label="Aktif Sözleşme" :value="contracts.filter(c => c.status === 'active').length" icon="doc" tone="success" />
+      <StatTile label="Bitişe Yakın" :value="contracts.filter(c => c.status === 'ending').length" icon="clock" tone="warning" />
+      <StatTile label="İmza Bekleyen" :value="contracts.filter(c => c.status === 'draft').length" icon="pen" tone="info" />
+      <StatTile label="Süresi Dolan" :value="contracts.filter(c => c.status === 'expired').length" icon="alert" tone="danger" />
     </div>
 
     <DataTable class="mt-5" :columns="columns" :rows="contracts">

@@ -33,16 +33,16 @@ const totalFleet = fleetStatusDonut.reduce((s, d) => s + d.value, 0)
 
     <!-- Aksiyon gerektiren -->
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <StatTile label="Teslim Bekleyen Kiralamalar" :value="supplierKpi.pendingDelivery" icon="🚚" tone="brand" />
-      <StatTile label="İade / Mutabakat Bekleyen" :value="supplierKpi.pendingReturn" icon="↩️" tone="warning" />
-      <StatTile label="Bakım Önerileri" :value="supplierKpi.maintenanceHints" icon="🔧" tone="info" />
-      <StatTile label="Mali Eşleştirme Bekleyen" :value="supplierKpi.matchPending" icon="📂" tone="danger" />
+      <StatTile label="Teslim Bekleyen Kiralamalar" :value="supplierKpi.pendingDelivery" icon="truck" tone="brand" />
+      <StatTile label="İade / Mutabakat Bekleyen" :value="supplierKpi.pendingReturn" icon="undo" tone="warning" />
+      <StatTile label="Bakım Önerileri" :value="supplierKpi.maintenanceHints" icon="wrench" tone="info" />
+      <StatTile label="Mali Eşleştirme Bekleyen" :value="supplierKpi.matchPending" icon="folder" tone="danger" />
     </div>
 
     <!-- Filo durumu -->
     <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
       <div v-for="f in fleetStatus" :key="f.label" class="card p-4">
-        <span class="text-lg">{{ f.icon }}</span>
+        <span class="grid h-9 w-9 place-items-center rounded-lg bg-surface-muted text-ink-soft"><Icon :name="f.icon" :size="18" /></span>
         <p class="mt-2 text-xs text-ink-soft">{{ f.label }}</p>
         <p class="text-xl font-bold">{{ f.value }}</p>
       </div>

@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import Icon from '@/components/ui/Icon.vue'
+import BrandLogo from '@/components/ui/BrandLogo.vue'
 import { useUiStore } from '@/stores/ui'
 import { supplierNav } from '@/data/supplier'
 
@@ -23,11 +24,8 @@ const toggle = (label) => (open.value[label] = !open.value[label])
     :class="ui.mobileNavOpen ? 'translate-x-0' : '-translate-x-full'"
   >
     <div class="flex h-16 items-center gap-2.5 px-5">
-      <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-600 text-white shadow-sm"><Icon name="car" :size="20" /></span>
-      <div class="leading-tight">
-        <span class="text-lg font-extrabold tracking-tight">fleet<span class="text-brand-600">rent</span></span>
-        <p class="text-[0.6rem] font-semibold uppercase tracking-wider text-ink-faint">Tedarikçi Portalı</p>
-      </div>
+      <RouterLink to="/supplier" class="flex items-center gap-2"><BrandLogo :size="32" /></RouterLink>
+      <span class="rounded-md bg-brand-50 px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wider text-brand-600">Tedarikçi</span>
     </div>
 
     <nav class="flex-1 space-y-0.5 overflow-y-auto px-3 py-4">

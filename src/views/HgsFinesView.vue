@@ -11,8 +11,8 @@ import { hgsRecords, fines, fineStatusLabels, TL } from '@/data/mock'
 
 const tab = ref('hgs')
 const tabs = [
-  { key: 'hgs', label: 'HGS Geçişleri', icon: '🛣️', count: hgsRecords.length },
-  { key: 'fines', label: 'Trafik Cezaları', icon: '🚨', count: fines.length },
+  { key: 'hgs', label: 'HGS Geçişleri', icon: 'road', count: hgsRecords.length },
+  { key: 'fines', label: 'Trafik Cezaları', icon: 'siren', count: fines.length },
 ]
 const hgsCols = [
   { key: 'plate', label: 'Plaka', mono: true }, { key: 'date', label: 'Tarih' },
@@ -33,10 +33,10 @@ const totalFines = fines.reduce((s, f) => s + f.amount, 0)
     <PageHeader eyebrow="Gider Takibi" title="HGS & Cezalar" subtitle="Otoyol/köprü geçişleri ve trafik para cezalarını araç bazında takip edin." />
 
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <StatTile label="Aylık HGS Gideri" :value="TL(277)" icon="🛣️" tone="brand" />
-      <StatTile label="Düşük Bakiye Uyarısı" :value="1" icon="🔋" tone="warning" />
-      <StatTile label="Ödenmemiş Ceza" :value="TL(totalFines - 993)" icon="🚨" tone="danger" />
-      <StatTile label="İtiraz Edilen" :value="fines.filter(f => f.status === 'objection').length" icon="⚖️" tone="info" />
+      <StatTile label="Aylık HGS Gideri" :value="TL(277)" icon="road" tone="brand" />
+      <StatTile label="Düşük Bakiye Uyarısı" :value="1" icon="battery" tone="warning" />
+      <StatTile label="Ödenmemiş Ceza" :value="TL(totalFines - 993)" icon="siren" tone="danger" />
+      <StatTile label="İtiraz Edilen" :value="fines.filter(f => f.status === 'objection').length" icon="scale" tone="info" />
     </div>
 
     <div class="my-5"><UiTabs v-model="tab" :tabs="tabs" /></div>
