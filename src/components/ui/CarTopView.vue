@@ -13,6 +13,25 @@ const emit = defineEmits(['part-click'])
 const imgSrc = import.meta.env.BASE_URL + 'car-top.png'
 const ratio = 747 / 360
 
+// Araç rengine göre boyama (gümüş fotoğrafı renklendirir)
+const colorMap = {
+  beyaz: '#f3f4f6', siyah: '#2b2f36', gümüş: '#d7dbe0', gumus: '#d7dbe0', gri: '#9aa0ab',
+  'koyu gri': '#6b7079', antrasit: '#454b55', lacivert: '#24386e', kırmızı: '#d23b32',
+  kirmizi: '#d23b32', mavi: '#2f7bf0', yeşil: '#2f8f5e', yesil: '#2f8f5e', turuncu: '#e8842b',
+}
+const tint = computed(() => {
+  const c = (props.color || '').trim().toLowerCase()
+  if (!c) return null
+  if (c.startsWith('#')) return c
+  return colorMap[c] || null
+})
+const maskStyle = computed(() => ({
+  maskImage: `url(${imgSrc})`, WebkitMaskImage: `url(${imgSrc})`,
+  maskSize: 'contain', WebkitMaskSize: 'contain',
+  maskPosition: 'center', WebkitMaskPosition: 'center',
+  maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat',
+}))
+
 // Parça işaretleri — fotoğraf üzerindeki konumlar (yüzde)
 const parts = [
   { id: 'engine', label: 'Motor', top: 14, left: 50, wheel: false },
@@ -30,8 +49,10 @@ const dotColor = (p) => props.wheelTones[p.id] || null
 </script>
 
 <template>
-  <div class="relative mx-auto" :style="{ width: width + 'px', height: width * ratio + 'px' }">
+  <div class="relative mx-auto" style="isolation: isolate" :style="{ width: width + 'px', height: width * ratio + 'px' }">
     <img :src="imgSrc" alt="Araç üstten görünüm" class="h-full w-full object-contain drop-shadow-sm" draggable="false" />
+    <!-- araç rengine göre boyama katmanı (fotoğraf maskesiyle) -->
+    <div v-if="tint" class="pointer-events-none absolute inset-0" :style="[maskStyle, { background: tint, mixBlendMode: 'multiply', opacity: 0.88 }]" />
 
     <!-- parça işaretleri -->
     <button

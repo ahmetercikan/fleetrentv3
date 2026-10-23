@@ -29,12 +29,12 @@
   --color-info: #0ea5e9;
   --color-info-soft: #e0f2fe;
 
-  /* Yüzeyler & kenarlıklar (light) — nötr açık gri (parlama azaltıldı) */
-  --color-canvas: #e9eaed;        /* nötr açık gri zemin */
-  --color-surface: #fcfcfd;       /* kartlar: hafif kırık beyaz */
-  --color-surface-muted: #eef0f2;
-  --color-border: #d2d5dc;        /* belirgin, nötr kenar çizgisi */
-  --color-border-strong: #bbbfc8;
+  /* Yüzeyler & kenarlıklar (light) — beyaz zemin, belirgin kenarlar */
+  --color-canvas: #ffffff;        /* beyaz zemin */
+  --color-surface: #ffffff;       /* kartlar beyaz; kenar + hafif gölge ile ayrışır */
+  --color-surface-muted: #f1f3f6;
+  --color-border: #dadee6;        /* belirgin, nötr kenar çizgisi */
+  --color-border-strong: #c3c8d2;
   --color-ink: #11151d;
   --color-ink-soft: #4a4f5a;
   --color-ink-faint: #868b96;
@@ -68,6 +68,7 @@
 @layer base {
   html {
     font-family: var(--font-sans);
+    font-size: 15px; /* daha kompakt ölçek (varsayılan 16px) */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
