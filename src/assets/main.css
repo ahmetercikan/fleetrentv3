@@ -137,6 +137,36 @@
   }
 }
 
+/* Harita — canlı araç pini */
+.veh-pin {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--c);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+.veh-pin::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: var(--c);
+  opacity: 0.35;
+  animation: veh-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes veh-ping {
+  0% { transform: scale(0.8); opacity: 0.45; }
+  70%, 100% { transform: scale(2.2); opacity: 0; }
+}
+.leaflet-container { font: inherit; background: var(--color-surface-muted); }
+.leaflet-popup-content-wrapper { border-radius: 10px; }
+/* koyu tema: tile'ları karart (anahtarsız OSM için filtre) */
+.veh-map-dark .leaflet-tile { filter: invert(1) hue-rotate(185deg) brightness(0.92) contrast(0.9); }
+.veh-map-dark .leaflet-container { background: #0e1626; }
+
 /* Reduced-motion'a saygı */
 @media (prefers-reduced-motion: reduce) {
   *,

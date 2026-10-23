@@ -9,6 +9,7 @@ import UiBadge from '@/components/ui/UiBadge.vue'
 import Icon from '@/components/ui/Icon.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
 import BarChart from '@/components/charts/BarChart.vue'
+import VehicleMap from '@/components/ui/VehicleMap.vue'
 import { company, kpis, monthlyCost, fleetDistribution, contractStatus, upcomingDates, TL, NUM } from '@/data/mock'
 import { useFleetStore } from '@/stores/fleet'
 import { useToastStore } from '@/stores/toast'
@@ -68,28 +69,12 @@ const pins = computed(() =>
 
     <!-- Sıra 2: Araç konumu + Filo dağılımı -->
     <div class="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-3">
-      <UiCard class="xl:col-span-2" title="Araçların Konumu" subtitle="Canlı GPS takibi">
-        <template #actions><UiButton variant="ghost" size="sm" @click="router.push('/dashboard/vehicles')">Tümünü Gör</UiButton></template>
-        <div class="relative overflow-hidden rounded-xl border border-[color:var(--color-border)]" style="height: 280px">
-          <!-- stilize harita -->
-          <svg viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice" class="h-full w-full">
-            <rect width="100" height="70" fill="var(--color-surface-muted)" />
-            <g stroke="var(--color-border)" stroke-width="0.5" fill="none">
-              <path d="M0 18 H100 M0 40 H100 M0 58 H100 M22 0 V70 M52 0 V70 M78 0 V70" />
-            </g>
-            <g stroke="var(--color-border-strong)" stroke-width="1.4" fill="none" opacity="0.7">
-              <path d="M0 29 H100 M38 0 V70" />
-            </g>
-            <g fill="var(--color-border)" opacity="0.45">
-              <rect x="4" y="21" width="14" height="6" rx="1" /><rect x="56" y="43" width="18" height="11" rx="1" />
-              <rect x="82" y="3" width="14" height="12" rx="1" /><rect x="25" y="60" width="10" height="7" rx="1" />
-            </g>
-          </svg>
-          <!-- pinler -->
-          <span v-for="p in pins" :key="p.plate" class="group absolute -translate-x-1/2 -translate-y-full" :style="{ left: p.x + '%', top: p.y + '%' }" :title="p.plate">
-            <svg width="22" height="28" viewBox="0 0 22 28"><path d="M11 0C5 0 0 5 0 11c0 7 11 17 11 17s11-10 11-17C22 5 17 0 11 0Z" :fill="p.tone" /><circle cx="11" cy="11" r="4" fill="#fff" /></svg>
-          </span>
-        </div>
+      <UiCard class="xl:col-span-2" title="Araçların Konumu" subtitle="Canlı GPS takibi · Arvento entegrasyonu">
+        <template #actions>
+          <span class="mr-1 inline-flex items-center gap-1.5 rounded-full bg-success-soft px-2 py-1 text-xs font-semibold text-success"><span class="h-1.5 w-1.5 animate-pulse rounded-full bg-success" /> Canlı</span>
+          <UiButton variant="ghost" size="sm" @click="router.push('/dashboard/vehicles')">Tümünü Gör</UiButton>
+        </template>
+        <VehicleMap :vehicles="fleet.vehicles" :height="300" />
         <div class="mt-4 flex flex-wrap gap-5">
           <span class="flex items-center gap-2 text-sm"><span class="h-2.5 w-2.5 rounded-full bg-success" /><span class="text-ink-soft">Çalışıyor</span><b>{{ locStatus.calisiyor }}</b></span>
           <span class="flex items-center gap-2 text-sm"><span class="h-2.5 w-2.5 rounded-full bg-warning" /><span class="text-ink-soft">Serviste</span><b>{{ locStatus.serviste }}</b></span>
