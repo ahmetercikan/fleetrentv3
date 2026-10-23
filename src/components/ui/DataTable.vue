@@ -6,7 +6,9 @@ defineProps({
   emptyIcon: { type: String, default: 'box' },
   emptyText: { type: String, default: 'Kayıt bulunamadı.' },
   emptyHint: { type: String, default: '' },
+  clickable: { type: Boolean, default: false },
 })
+const emit = defineEmits(['row-click'])
 const alignCls = { right: 'text-right', center: 'text-center', left: 'text-left' }
 </script>
 
@@ -32,6 +34,8 @@ const alignCls = { right: 'text-right', center: 'text-center', left: 'text-left'
             v-for="(row, i) in rows"
             :key="row.id ?? i"
             class="border-b border-[color:var(--color-border)] last:border-0 transition hover:bg-surface-muted/50"
+            :class="clickable ? 'cursor-pointer' : ''"
+            @click="clickable && emit('row-click', row)"
           >
             <td
               v-for="c in columns"
